@@ -1,0 +1,17 @@
+Class ReservationSys
+Person seats[][]
+bool addGroup(Group)
+bool removeGroup(Group)
+vector<Group> groups
+bool save(filename)
+bool load(filename)
+
+Class Group
+enum type
+bool smokingPreference
+int satisfaction
+vector<Person> members
+
+Class Person
+Group* p_group
+string name
