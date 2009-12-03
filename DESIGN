@@ -5,6 +5,8 @@ bool removeGroup(Group)
 vector<Group> groups
 bool save(filename)
 bool load(filename)
+void ticketGenerator(Group)
+void satisfactionReport(*seats)
 
 Class Group
 enum type
