@@ -1,11 +1,13 @@
+#ifndef RESERVATION_SYS_H
+#define RESERVATION_SYS_H
 
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
-class Person;
-class Group;
+#include "Person.h"
+#include "Group.h"
 
 class ReservationSys
 {
@@ -20,4 +22,6 @@ class ReservationSys
   void ticketGenerator(Group);
   void satisfactionReport();
 };
+
+#endif
 

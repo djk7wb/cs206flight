@@ -1,4 +1,7 @@
 
+#ifndef GROUP_H
+#define GROUP_H
+
 #include <vector>
 
 using namespace std;
@@ -20,4 +23,5 @@ class Group
   vector<Person> members;
 };
 
+#endif
 

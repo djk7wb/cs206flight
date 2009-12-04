@@ -1,4 +1,5 @@
-
+#ifndef PERSON_H
+#define PERSON_H
 
 #include <iostream>
 
@@ -11,4 +12,6 @@ class Person
   Group* p_group;
   string name;
 };
+
+#endif
 
