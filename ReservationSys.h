@@ -11,12 +11,20 @@ using namespace std;
 
 class ReservationSys
 {
-  static const int ROWS = 30;
+  private:
+  static const int ROWS = 20;
   static const int COLS = 6;
-  Person** seats;
+  Person*** seats;
+  vector<Group> groups;
+
+  bool validSeating(vector<int> chosenSeatNums);
+  int seatingValue(Group g, vector<int> chosenSeatNums);
+
+  public:
+  ReservationSys();
+  ~ReservationSys();
   bool addGroup(Group);
   bool removeGroup(Group);
-  vector<Group> groups;
   bool save(string filename);
   bool load(string filename);
   void ticketGenerator(Group);

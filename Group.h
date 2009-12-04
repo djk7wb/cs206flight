@@ -21,6 +21,7 @@ class Group
   bool smokingPreference;
   int satisfaction;
   vector<Person> members;
+  friend class ReservationSys;
 };
 
 #endif
