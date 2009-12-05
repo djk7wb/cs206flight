@@ -100,13 +100,15 @@ bool ReservationSys::addGroup(Group newGroup)
 
   if (bestValue != INVALID)
   {
+    newGroup.satisfaction = bestValue;
+    groups.push_back(newGroup);
+
     for (int i = 0; i < int(bestSeats.size()); i++)
     {
       int seatNum = bestSeats[i];
       seats[seatNum/COLS][seatNum%COLS] = new Person;
-      *(seats[seatNum/COLS][seatNum%COLS]) = newGroup.members[i];
+      *(seats[seatNum/COLS][seatNum%COLS]) = groups.back().members[i];
     }
-    newGroup.satisfaction = bestValue;
   }
   return (bestValue != INVALID);
 }
@@ -242,6 +244,11 @@ int ReservationSys::seatingValue(Group g, vector<int> chosenSeatNums)
   return value;
 }
 
+bool ReservationSys::removeGroup(Group oldGroup)
+{
+  return true;
+}
+
 ostream& operator<<(ostream& out, ReservationSys& rhs)
 {
   for (int i = 0; i < rhs.ROWS; i++)
@@ -267,6 +274,14 @@ ostream& operator<<(ostream& out, ReservationSys& rhs)
     }
     out << "\n";
   }
+
+  out << "Satisfaction Levels" << endl;
+  for (int i = 0; i < int(rhs.groups.size()); i++)
+  {
+    out << "  Group " << rhs.groups[i].groupID << " : "
+        << rhs.groups[i].satisfaction << endl;
+  }
+
   return out;
 }
 
