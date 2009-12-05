@@ -29,6 +29,8 @@ class ReservationSys
   bool load(string filename);
   void ticketGenerator(Group);
   void satisfactionReport();
+
+  friend ostream& operator<<(ostream& out, ReservationSys& rhs);
 };
 
 #endif

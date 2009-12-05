@@ -53,6 +53,7 @@ bool ReservationSys::addGroup(Group newGroup)
       newValue = seatingValue(newGroup, chosenSeatNums);
       if (newValue > bestValue)
       {
+        cout << "better seat " <<  newValue;
         bestValue = newValue;
         bestSeats = chosenSeatNums;
       }
@@ -70,10 +71,12 @@ bool ReservationSys::addGroup(Group newGroup)
 
   if (bestValue != INVALID)
   {
-    for (int i = 0; i < chosenSeatNums.size(); i++)
+    for (int i = 0; i < bestSeats.size(); i++)
     {
-      int seatNum = chosenSeatNums[i];
+      int seatNum = bestSeats[i];
+      seats[seatNum%ROWS][seatNum/ROWS] = new Person;
       *(seats[seatNum%ROWS][seatNum/ROWS]) = newGroup.members[i];
+      cout << "chose " << seatNum << endl;
     }
     newGroup.satisfaction = bestValue;
   }
@@ -107,5 +110,29 @@ int ReservationSys::seatingValue(Group g, vector<int> chosenSeatNums)
 {
   int value = 0;
   return value;
+}
+
+ostream& operator<<(ostream& out, ReservationSys& rhs)
+{
+  for (int i = 0; i < rhs.ROWS; i++)
+  {
+    for (int j = 0; j < rhs.COLS; j++)
+    {
+      if (j == rhs.COLS/2)
+      {
+        out << " ";
+      }
+      if (rhs.seats[i][j] == NULL)
+      {
+        out << "_ ";
+      }
+      else
+      {
+        out << "X ";
+      }
+    }
+    out << "\n";
+  }
+  return out;
 }
 

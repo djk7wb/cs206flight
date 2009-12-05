@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class Person;
+#include "Person.h"
 
 enum GroupType
 {
@@ -17,10 +17,15 @@ enum GroupType
 
 class Group
 {
+  public:
+  bool addPerson(Person);
   GroupType type;
   bool smokingPreference;
   int satisfaction;
+
+  private:
   vector<Person> members;
+
   friend class ReservationSys;
 };
 

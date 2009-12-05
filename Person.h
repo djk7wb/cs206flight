@@ -11,6 +11,8 @@ class Person
 {
   Group* p_group;
   string name;
+
+  friend class Group;
 };
 
 #endif
