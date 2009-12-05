@@ -58,12 +58,15 @@ bool ReservationSys::addGroup(Group newGroup)
       }
     }
     chosenSeatNums.back() += 1;
-    for (int i = chosenSeatNums.size()-1; i >= 0; i--)
+    for (int i = chosenSeatNums.size()-1; i > 0; i--)
     {
-      if (chosenSeatNums[i] > ROWS*COLS)
+      if (chosenSeatNums[i] > ROWS*COLS-chosenSeatNums.size()+i)
       {
         chosenSeatNums[i-1] += 1;
-        chosenSeatNums[i] = chosenSeatNums[i-1] + 1;
+        for (int j = i; j < chosenSeatNums.size(); j++)
+        {
+          chosenSeatNums[j] = chosenSeatNums[j-1] + 1;
+        }
       }
     }
   };
@@ -88,14 +91,19 @@ bool ReservationSys::validSeating(vector<int> chosenSeatNums)
   for (int i = 0; i < chosenSeatNums.size()-1; i++)
   {
     //Check for duplicates
-    for (int j = i; j < chosenSeatNums.size(); j++)
+    for (int j = i+1; j < chosenSeatNums.size(); j++)
     {
       if (chosenSeatNums[i] == chosenSeatNums[j])
       {
         valid = false;
       }
     }
-    if (seats[i/COLS][i%COLS] != NULL)
+  }
+
+  //Check occupied seats
+  for (int i = 0; i < chosenSeatNums.size(); i++)
+  {
+    if (seats[chosenSeatNums[i]/COLS][chosenSeatNums[i]%COLS] != NULL)
     {
       valid = false;
     }
@@ -106,7 +114,8 @@ bool ReservationSys::validSeating(vector<int> chosenSeatNums)
 
 int ReservationSys::seatingValue(Group g, vector<int> chosenSeatNums)
 {
-  const int SMOKE_VALUE = 5;
+  const int SMOKE_VALUE = 10;
+  const int COL_VALUE = 5;
   const int ADJACENT_VALUE = 15;
   int value = 0;
 
@@ -120,6 +129,8 @@ int ReservationSys::seatingValue(Group g, vector<int> chosenSeatNums)
     int seatNum = chosenSeatNums[i];
     int row = seatNum/COLS;
     int col = seatNum%COLS;
+    bool aisle = (col==COLS/2 || col == COLS/2 -1);
+    bool window = (col==0 || col == COLS-1);
     if (i > 0)
     {
       if (seatNum != chosenSeatNums[i-1]+1)
@@ -135,6 +146,14 @@ int ReservationSys::seatingValue(Group g, vector<int> chosenSeatNums)
     if ((g.type==BUSINESS)&&(g.smokingPreference == (row >= ROWS-SMOKE_ROWS)))
     {
       value += SMOKE_VALUE;
+    }
+    if (g.type==FAMILY && aisle)
+    {
+      value += COL_VALUE;
+    }
+    if (g.type==TOURISTS && window)
+    {
+      value += COL_VALUE;
     }
   }
 
