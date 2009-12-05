@@ -13,6 +13,7 @@ class Person
   string name;
 
   friend class Group;
+  friend class ReservationSys;
 };
 
 #endif

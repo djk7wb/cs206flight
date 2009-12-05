@@ -252,7 +252,7 @@ bool ReservationSys::removeGroup(Group oldGroup)
   {
     if (groups[i].groupID == oldGroup.groupID)
     {
-      target = *groups[i];
+      target = &(groups[i]);
       targetIndex = i;
     }
   }
@@ -263,13 +263,13 @@ bool ReservationSys::removeGroup(Group oldGroup)
     {
       for (int j = 0; j < COLS; j++)
       {
-        if (seats[i][j].p_group == target)
+        if (seats[i][j]->p_group == target)
         {
           seats[i][j] = NULL;
         }
       }
     }
-    myvector.erase(myvector.begin()+targetIndex);
+    groups.erase(groups.begin()+targetIndex);
   }
 
   return true;
