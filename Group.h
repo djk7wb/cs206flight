@@ -18,10 +18,14 @@ enum GroupType
 class Group
 {
   public:
+  Group();
+  Group(const Group& original);
   bool addPerson(Person);
   GroupType type;
   bool smokingPreference;
   int satisfaction;
+  int groupID;
+  static int nextID;
 
   private:
   vector<Person> members;
