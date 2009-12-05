@@ -246,6 +246,32 @@ int ReservationSys::seatingValue(Group g, vector<int> chosenSeatNums)
 
 bool ReservationSys::removeGroup(Group oldGroup)
 {
+  Group* target = NULL;
+  int targetIndex = -1;
+  for (int i = 0; i < int(groups.size()); i++)
+  {
+    if (groups[i].groupID == oldGroup.groupID)
+    {
+      target = *groups[i];
+      targetIndex = i;
+    }
+  }
+
+  if (targetIndex > -1)
+  {
+    for (int i = 0; i < ROWS; i++)
+    {
+      for (int j = 0; j < COLS; j++)
+      {
+        if (seats[i][j].p_group == target)
+        {
+          seats[i][j] = NULL;
+        }
+      }
+    }
+    myvector.erase(myvector.begin()+targetIndex);
+  }
+
   return true;
 }
 
