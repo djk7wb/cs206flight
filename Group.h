@@ -1,4 +1,3 @@
-
 #ifndef GROUP_H
 #define GROUP_H
 
@@ -26,6 +25,7 @@ class Group
   int satisfaction;
   int groupID;
   static int nextID;
+  bool toTicket();
 
   private:
   vector<Person> members;
