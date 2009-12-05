@@ -40,13 +40,27 @@ bool ReservationSys::addGroup(Group newGroup)
   vector<int> chosenSeatNums;
   vector<int> bestSeats;
   int newValue;
+  int bestPossible;
 
+  switch (newGroup.type)
+  {
+    case BUSINESS:
+    bestPossible = SMOKE_VALUE;
+    break;
+    case TOURISTS:
+    bestPossible = ADJACENT_VALUE + COL_VALUE;
+    break;
+    case FAMILY:
+    bestPossible = ADJACENT_VALUE + COL_VALUE*2;
+  }
+
+  //Try adjacent seating only
   for (int i = 0; i < newGroup.members.size(); i++)
   {
     chosenSeatNums.push_back(i);
   }
-
-  while (chosenSeatNums[0] <= ROWS*COLS - newGroup.members.size())
+  while ((chosenSeatNums[0] <= ROWS*COLS - newGroup.members.size())
+          && bestValue < bestPossible)
   {
     if (validSeating(chosenSeatNums))
     {
@@ -57,18 +71,31 @@ bool ReservationSys::addGroup(Group newGroup)
         bestSeats = chosenSeatNums;
       }
     }
-    chosenSeatNums.back() += 1;
-    for (int i = chosenSeatNums.size()-1; i > 0; i--)
+
+    incrementSeatNums(chosenSeatNums, 0);
+  };
+
+
+  //Try all possible seating
+  chosenSeatNums.clear();
+  for (int i = 0; i < newGroup.members.size(); i++)
+  {
+    chosenSeatNums.push_back(i);
+  }
+  while ((chosenSeatNums[0] <= ROWS*COLS - newGroup.members.size())
+          && bestValue < bestPossible)
+  {
+    if (validSeating(chosenSeatNums))
     {
-      if (chosenSeatNums[i] > ROWS*COLS-chosenSeatNums.size()+i)
+      newValue = seatingValue(newGroup, chosenSeatNums);
+      if (newValue > bestValue)
       {
-        chosenSeatNums[i-1] += 1;
-        for (int j = i; j < chosenSeatNums.size(); j++)
-        {
-          chosenSeatNums[j] = chosenSeatNums[j-1] + 1;
-        }
+        bestValue = newValue;
+        bestSeats = chosenSeatNums;
       }
     }
+
+    incrementSeatNums(chosenSeatNums, chosenSeatNums.size()-1);
   };
 
   if (bestValue != INVALID)
@@ -84,6 +111,48 @@ bool ReservationSys::addGroup(Group newGroup)
   return (bestValue != INVALID);
 }
 
+//chosenSeatNums becomes the seat numbers associated with the next combination
+// with a higher value of chosenSeatNums[index]
+void ReservationSys::incrementSeatNums(vector<int>& chosenSeatNums, int index)
+{
+  do
+  {
+    //Increment the selected seat number
+    chosenSeatNums[index] += 1;
+    if (chosenSeatNums[0] > ROWS*COLS-chosenSeatNums.size())
+    {
+      break;
+    }
+
+    //Reset all following seat numbers to their lowest possible value
+    for (int j = index+1; j < chosenSeatNums.size(); j++)
+    {
+      chosenSeatNums[j] = chosenSeatNums[j-1] + 1;
+    }
+
+    //If any seat numbers after the first are now too large, increment
+    // the seat number before it.
+    index = -1;
+    for (int i = 1; index==-1 && i < chosenSeatNums.size(); i++)
+    {
+      if (chosenSeatNums[i] > ROWS*COLS-chosenSeatNums.size()+i)
+      {
+        index = i-1;
+      }
+    }
+
+    //If any seat number is occupied, increment it.
+    for (int i = 0; index==-1 && i < chosenSeatNums.size(); i++)
+    {
+      if (seats[chosenSeatNums[i]/COLS][chosenSeatNums[i]%COLS] != NULL)
+      {
+        index = i;
+      }
+    }
+
+  } while (index != -1);
+}
+
 bool ReservationSys::validSeating(vector<int> chosenSeatNums)
 {
   bool valid = true;
@@ -95,6 +164,7 @@ bool ReservationSys::validSeating(vector<int> chosenSeatNums)
     {
       if (chosenSeatNums[i] == chosenSeatNums[j])
       {
+        cout << "?" << endl;
         valid = false;
       }
     }
@@ -114,14 +184,10 @@ bool ReservationSys::validSeating(vector<int> chosenSeatNums)
 
 int ReservationSys::seatingValue(Group g, vector<int> chosenSeatNums)
 {
-  const int SMOKE_VALUE = 10;
-  const int COL_VALUE = 5;
-  const int ADJACENT_VALUE = 15;
   int value = 0;
 
   sort(chosenSeatNums.begin(), chosenSeatNums.end());
 
-  //Adjacency
   bool adjacent = true;
   int prevRow = -1;
   for (int i = 0; i < chosenSeatNums.size(); i++)
@@ -143,9 +209,16 @@ int ReservationSys::seatingValue(Group g, vector<int> chosenSeatNums)
       }
     }
     prevRow = row;
-    if ((g.type==BUSINESS)&&(g.smokingPreference == (row >= ROWS-SMOKE_ROWS)))
+    if (g.type==BUSINESS)
     {
-      value += SMOKE_VALUE;
+      if (g.smokingPreference == (row >= ROWS-SMOKE_ROWS))
+      {
+        value += SMOKE_VALUE;
+      }
+      else
+      {
+        value -= SMOKE_VALUE;
+      }
     }
     if (g.type==FAMILY && aisle)
     {
@@ -160,6 +233,10 @@ int ReservationSys::seatingValue(Group g, vector<int> chosenSeatNums)
   if (adjacent && chosenSeatNums.size()>1)
   {
     value += ADJACENT_VALUE;
+  }
+  else if (!adjacent  && chosenSeatNums.size()>1)
+  {
+    value -= ADJACENT_VALUE;
   }
 
   return value;

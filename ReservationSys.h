@@ -15,11 +15,15 @@ class ReservationSys
   static const int ROWS = 20;
   static const int COLS = 6;
   static const int SMOKE_ROWS = 3;
+  static const int SMOKE_VALUE = 5;
+  static const int COL_VALUE = 5;
+  static const int ADJACENT_VALUE = 10;
   Person*** seats;
   vector<Group> groups;
 
   bool validSeating(vector<int> chosenSeatNums);
   int seatingValue(Group g, vector<int> chosenSeatNums);
+  void incrementSeatNums(vector<int>& chosenSeatNums, int index);
 
   public:
   ReservationSys();
