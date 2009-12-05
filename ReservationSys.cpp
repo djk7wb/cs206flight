@@ -46,14 +46,13 @@ bool ReservationSys::addGroup(Group newGroup)
     chosenSeatNums.push_back(i);
   }
 
-  while (chosenSeatNums[0] < ROWS*COLS - newGroup.members.size())
+  while (chosenSeatNums[0] <= ROWS*COLS - newGroup.members.size())
   {
     if (validSeating(chosenSeatNums))
     {
       newValue = seatingValue(newGroup, chosenSeatNums);
       if (newValue > bestValue)
       {
-        cout << "better seat " <<  newValue;
         bestValue = newValue;
         bestSeats = chosenSeatNums;
       }
@@ -74,9 +73,8 @@ bool ReservationSys::addGroup(Group newGroup)
     for (int i = 0; i < bestSeats.size(); i++)
     {
       int seatNum = bestSeats[i];
-      seats[seatNum%ROWS][seatNum/ROWS] = new Person;
-      *(seats[seatNum%ROWS][seatNum/ROWS]) = newGroup.members[i];
-      cout << "chose " << seatNum << endl;
+      seats[seatNum/COLS][seatNum%COLS] = new Person;
+      *(seats[seatNum/COLS][seatNum%COLS]) = newGroup.members[i];
     }
     newGroup.satisfaction = bestValue;
   }
@@ -97,7 +95,7 @@ bool ReservationSys::validSeating(vector<int> chosenSeatNums)
         valid = false;
       }
     }
-    if (seats[i] != NULL)
+    if (seats[i/COLS][i%COLS] != NULL)
     {
       valid = false;
     }
@@ -108,7 +106,43 @@ bool ReservationSys::validSeating(vector<int> chosenSeatNums)
 
 int ReservationSys::seatingValue(Group g, vector<int> chosenSeatNums)
 {
+  const int SMOKE_VALUE = 5;
+  const int ADJACENT_VALUE = 15;
   int value = 0;
+
+  sort(chosenSeatNums.begin(), chosenSeatNums.end());
+
+  //Adjacency
+  bool adjacent = true;
+  int prevRow = -1;
+  for (int i = 0; i < chosenSeatNums.size(); i++)
+  {
+    int seatNum = chosenSeatNums[i];
+    int row = seatNum/COLS;
+    int col = seatNum%COLS;
+    if (i > 0)
+    {
+      if (seatNum != chosenSeatNums[i-1]+1)
+      {
+        adjacent = false;
+      }
+      if (row != prevRow)
+      {
+        adjacent = false;
+      }
+    }
+    prevRow = row;
+    if ((g.type==BUSINESS)&&(g.smokingPreference == (row >= ROWS-SMOKE_ROWS)))
+    {
+      value += SMOKE_VALUE;
+    }
+  }
+
+  if (adjacent && chosenSeatNums.size()>1)
+  {
+    value += ADJACENT_VALUE;
+  }
+
   return value;
 }
 
@@ -116,6 +150,10 @@ ostream& operator<<(ostream& out, ReservationSys& rhs)
 {
   for (int i = 0; i < rhs.ROWS; i++)
   {
+    if (i == rhs.ROWS - rhs.SMOKE_ROWS)
+    {
+      out << "   Smoking\n";
+    }
     for (int j = 0; j < rhs.COLS; j++)
     {
       if (j == rhs.COLS/2)

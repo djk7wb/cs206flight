@@ -14,6 +14,7 @@ class ReservationSys
   private:
   static const int ROWS = 20;
   static const int COLS = 6;
+  static const int SMOKE_ROWS = 3;
   Person*** seats;
   vector<Group> groups;
 
