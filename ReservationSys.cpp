@@ -55,11 +55,11 @@ bool ReservationSys::addGroup(Group newGroup)
   }
 
   //Try adjacent seating only
-  for (int i = 0; i < newGroup.members.size(); i++)
+  for (int i = 0; i < int(newGroup.members.size()); i++)
   {
     chosenSeatNums.push_back(i);
   }
-  while ((chosenSeatNums[0] <= ROWS*COLS - newGroup.members.size())
+  while ((chosenSeatNums[0] <= ROWS*COLS - int(newGroup.members.size()))
           && bestValue < bestPossible)
   {
     if (validSeating(chosenSeatNums))
@@ -78,11 +78,11 @@ bool ReservationSys::addGroup(Group newGroup)
 
   //Try all possible seating
   chosenSeatNums.clear();
-  for (int i = 0; i < newGroup.members.size(); i++)
+  for (int i = 0; i < int(newGroup.members.size()); i++)
   {
     chosenSeatNums.push_back(i);
   }
-  while ((chosenSeatNums[0] <= ROWS*COLS - newGroup.members.size())
+  while ((chosenSeatNums[0] <= ROWS*COLS - int(newGroup.members.size()))
           && bestValue < bestPossible)
   {
     if (validSeating(chosenSeatNums))
@@ -95,12 +95,12 @@ bool ReservationSys::addGroup(Group newGroup)
       }
     }
 
-    incrementSeatNums(chosenSeatNums, chosenSeatNums.size()-1);
+    incrementSeatNums(chosenSeatNums, int(chosenSeatNums.size())-1);
   };
 
   if (bestValue != INVALID)
   {
-    for (int i = 0; i < bestSeats.size(); i++)
+    for (int i = 0; i < int(bestSeats.size()); i++)
     {
       int seatNum = bestSeats[i];
       seats[seatNum/COLS][seatNum%COLS] = new Person;
@@ -119,13 +119,13 @@ void ReservationSys::incrementSeatNums(vector<int>& chosenSeatNums, int index)
   {
     //Increment the selected seat number
     chosenSeatNums[index] += 1;
-    if (chosenSeatNums[0] > ROWS*COLS-chosenSeatNums.size())
+    if (chosenSeatNums[0] > ROWS*COLS-int(chosenSeatNums.size()))
     {
       break;
     }
 
     //Reset all following seat numbers to their lowest possible value
-    for (int j = index+1; j < chosenSeatNums.size(); j++)
+    for (int j = index+1; j < int(chosenSeatNums.size()); j++)
     {
       chosenSeatNums[j] = chosenSeatNums[j-1] + 1;
     }
@@ -133,16 +133,16 @@ void ReservationSys::incrementSeatNums(vector<int>& chosenSeatNums, int index)
     //If any seat numbers after the first are now too large, increment
     // the seat number before it.
     index = -1;
-    for (int i = 1; index==-1 && i < chosenSeatNums.size(); i++)
+    for (int i = 1; index==-1 && i < int(chosenSeatNums.size()); i++)
     {
-      if (chosenSeatNums[i] > ROWS*COLS-chosenSeatNums.size()+i)
+      if (chosenSeatNums[i] > ROWS*COLS-int(chosenSeatNums.size())+i)
       {
         index = i-1;
       }
     }
 
     //If any seat number is occupied, increment it.
-    for (int i = 0; index==-1 && i < chosenSeatNums.size(); i++)
+    for (int i = 0; index==-1 && i < int(chosenSeatNums.size()); i++)
     {
       if (seats[chosenSeatNums[i]/COLS][chosenSeatNums[i]%COLS] != NULL)
       {
@@ -157,10 +157,10 @@ bool ReservationSys::validSeating(vector<int> chosenSeatNums)
 {
   bool valid = true;
   //Check for duplicates
-  for (int i = 0; i < chosenSeatNums.size()-1; i++)
+  for (int i = 0; i < int(chosenSeatNums.size())-1; i++)
   {
     //Check for duplicates
-    for (int j = i+1; j < chosenSeatNums.size(); j++)
+    for (int j = i+1; j < int(chosenSeatNums.size()); j++)
     {
       if (chosenSeatNums[i] == chosenSeatNums[j])
       {
@@ -171,7 +171,7 @@ bool ReservationSys::validSeating(vector<int> chosenSeatNums)
   }
 
   //Check occupied seats
-  for (int i = 0; i < chosenSeatNums.size(); i++)
+  for (int i = 0; i < int(chosenSeatNums.size()); i++)
   {
     if (seats[chosenSeatNums[i]/COLS][chosenSeatNums[i]%COLS] != NULL)
     {
@@ -190,7 +190,7 @@ int ReservationSys::seatingValue(Group g, vector<int> chosenSeatNums)
 
   bool adjacent = true;
   int prevRow = -1;
-  for (int i = 0; i < chosenSeatNums.size(); i++)
+  for (int i = 0; i < int(chosenSeatNums.size()); i++)
   {
     int seatNum = chosenSeatNums[i];
     int row = seatNum/COLS;
@@ -230,11 +230,11 @@ int ReservationSys::seatingValue(Group g, vector<int> chosenSeatNums)
     }
   }
 
-  if (adjacent && chosenSeatNums.size()>1)
+  if (adjacent && int(chosenSeatNums.size())>1)
   {
     value += ADJACENT_VALUE;
   }
-  else if (!adjacent  && chosenSeatNums.size()>1)
+  else if (!adjacent  && int(chosenSeatNums.size())>1)
   {
     value -= ADJACENT_VALUE;
   }
