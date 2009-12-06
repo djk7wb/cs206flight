@@ -25,7 +25,11 @@ int ShowGroupDialog::doExec()
     }
     Group *tmpGroup = tmpPerson->getGroup();
 
-
+    vector<Person> passengers = tmpGroup->getMembers();
+    for(int i=0; i<(int)passengers.size(); i++) {
+        Person tmpPassenger = passengers.at(i);
+        ui->groupInfo->appendPlainText(tr("Passenger %1: %2").arg(i+1).arg(tmpPassenger.getName().c_str()));
+    }
 
     QString smokingPreference = "No";
     if(tmpGroup->smokingPreference) {
@@ -33,8 +37,8 @@ int ShowGroupDialog::doExec()
     }
 
     ui->groupInfo->appendPlainText("");
-    ui->groupInfo->appendPlainText("Smoking preference: " + smokingPreference);
-    ui->groupInfo->appendPlainText("Group satisfaction: " + QString().setNum(tmpGroup->satisfaction));
+    ui->groupInfo->appendPlainText(tr("Smoking preference: %1").arg(smokingPreference));
+    ui->groupInfo->appendPlainText(tr("Group satisfaction: %1").arg(tmpGroup->satisfaction));
 
     group = tmpGroup;
 
