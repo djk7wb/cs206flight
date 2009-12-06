@@ -21,6 +21,7 @@ class ReservationSys
   bool validSeating(vector<int> chosenSeatNums);
   int seatingValue(Group g, vector<int> chosenSeatNums);
   void incrementSeatNums(vector<int>& chosenSeatNums, int index);
+  int aislesAvailable();
 
   public:
   static const int ROWS = 20;

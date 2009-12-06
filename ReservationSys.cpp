@@ -51,7 +51,7 @@ bool ReservationSys::addGroup(Group newGroup)
     bestPossible = ADJACENT_VALUE + COL_VALUE;
     break;
     case FAMILY:
-    bestPossible = ADJACENT_VALUE + COL_VALUE*2;
+    bestPossible = ADJACENT_VALUE + COL_VALUE*min(2, aislesAvailable());
   }
 
   //Try adjacent seating only
@@ -77,6 +77,15 @@ bool ReservationSys::addGroup(Group newGroup)
 
 
   //Try all possible seating
+  if (newGroup.type == TOURISTS)
+  {
+    bestPossible = -ADJACENT_VALUE + 2*COL_VALUE;
+  }
+  else if(newGroup.type == FAMILY)
+  {
+    bestPossible = -ADJACENT_VALUE
+    + COL_VALUE*min(int(newGroup.members.size()), aislesAvailable());
+  }
   chosenSeatNums.clear();
   for (int i = 0; i < int(newGroup.members.size()); i++)
   {
@@ -111,6 +120,23 @@ bool ReservationSys::addGroup(Group newGroup)
     }
   }
   return (bestValue != INVALID);
+}
+
+int ReservationSys::aislesAvailable()
+{
+  int numAvail = 0;
+  for (int row = 0; row < ROWS; row++)
+  {
+    if (seats[row][COLS/2] == NULL)
+    {
+      numAvail+=1;
+    }
+    if (seats[row][COLS/2 -1] == NULL)
+    {
+      numAvail+=1;
+    }
+  }
+  return numAvail;
 }
 
 //chosenSeatNums becomes the seat numbers associated with the next combination
@@ -187,8 +213,6 @@ bool ReservationSys::validSeating(vector<int> chosenSeatNums)
 int ReservationSys::seatingValue(Group g, vector<int> chosenSeatNums)
 {
   int value = 0;
-
-  //sort(chosenSeatNums.begin(), chosenSeatNums.end());
 
   bool adjacent = true;
   int prevRow = -1;
@@ -301,13 +325,14 @@ ostream& operator<<(ostream& out, ReservationSys& rhs)
     out << "\n";
   }
 
+  /*
   out << "Satisfaction Levels" << endl;
   for (int i = 0; i < int(rhs.groups.size()); i++)
   {
     out << "  Group " << rhs.groups[i].groupID << " : "
         << rhs.groups[i].satisfaction << endl;
   }
-
+  */
   return out;
 }
 
