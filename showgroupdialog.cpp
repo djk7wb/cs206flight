@@ -24,9 +24,9 @@ int ShowGroupDialog::doExec()
         return 1;
     }
 
-    vector<Person> passengers = tmpGroup->getMembers();
-    for(int i=0; i<(int)passengers.size(); i++) {
-        Person tmpPassenger = passengers.at(i);
+    Person *passengers = tmpGroup->getMembers();
+    for(int i=0; i<tmpGroup->getNumMembers(); i++) {
+        Person tmpPassenger = passengers[i];
         QString seat = tr("[%1%2]").arg(tmpPassenger.getRow()+'A').arg(tmpPassenger.getCol()+1);
         ui->groupInfo->appendPlainText(tr("Passenger %1 %2: %2").arg(i+1).arg(seat).arg(tmpPassenger.getName().c_str()));
     }
