@@ -116,6 +116,8 @@ bool ReservationSys::addGroup(Group newGroup)
     {
       int seatNum = bestSeats[i];
       seats[seatNum/COLS][seatNum%COLS] = new Person;
+      seats[seatNum/COLS][seatNum%COLS]->row = seatNum/COLS;
+      seats[seatNum/COLS][seatNum%COLS]->col = seatNum%COLS;
       *(seats[seatNum/COLS][seatNum%COLS]) = groups.back().members[i];
     }
   }
