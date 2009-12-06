@@ -74,5 +74,6 @@ void ShowGroupDialog::on_close_clicked()
 
 void ShowGroupDialog::on_remove_clicked()
 {
+    reservation->removeGroup(group);
     this->close();
 }

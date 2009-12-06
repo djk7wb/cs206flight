@@ -30,7 +30,7 @@ class ReservationSys
   ReservationSys();
   ~ReservationSys();
   bool addGroup(Group);
-  bool removeGroup(Group);
+  bool removeGroup(Group*);
   bool save(string filename);
   bool load(string filename);
   void ticketGenerator(Group);
