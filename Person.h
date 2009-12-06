@@ -10,7 +10,9 @@ class Group;
 class Person
 {
   public:
-  void setName(string newName);
+  void setName(string newName){name=newName;};
+  string getName(){return name;};
+  Group* getGroup(){return p_group;};
 
   private:
   Group* p_group;
