@@ -35,6 +35,8 @@ class ReservationSys
   bool load(string filename);
   void ticketGenerator(Group);
   void satisfactionReport();
+  Person* getSeat(int row, int col){return seats[row][col];};
+  vector<Group> getGroups(){return groups;};
 
   friend ostream& operator<<(ostream& out, ReservationSys& rhs);
 };
