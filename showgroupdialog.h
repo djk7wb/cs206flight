@@ -2,6 +2,7 @@
 #define SHOWGROUPDIALOG_H
 
 #include <QDialog>
+#include "ReservationSys.h"
 
 namespace Ui {
     class ShowGroupDialog;
@@ -13,6 +14,7 @@ public:
     ShowGroupDialog(QWidget *parent = 0);
     ~ShowGroupDialog();
     void setSender(QString t);
+    void setReservationSys(ReservationSys *r);
     int doExec();
 
 protected:
@@ -21,6 +23,7 @@ protected:
 private:
     Ui::ShowGroupDialog *ui;
     QString sender;
+    ReservationSys *reservation;
 
 private slots:
     void on_remove_clicked();

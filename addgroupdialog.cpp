@@ -6,6 +6,14 @@ AddGroupDialog::AddGroupDialog(QWidget *parent) :
     ui(new Ui::AddGroupDialog)
 {
     ui->setupUi(this);
+
+    for(int i=0; i<5; i++) {
+        passengerName[i] = new QLineEdit;
+        if (i>0) {
+            passengerName[i]->setEnabled(false);
+        }
+        ui->gridLayout->addWidget(passengerName[i],i+4,2);
+    }
 }
 
 AddGroupDialog::~AddGroupDialog()
@@ -23,6 +31,11 @@ void AddGroupDialog::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+void AddGroupDialog::setReservationSys(ReservationSys *r)
+{
+    reservation = r;
 }
 
 void AddGroupDialog::on_travelerType_currentIndexChanged(QString type)
@@ -50,23 +63,22 @@ void AddGroupDialog::on_travelerType_currentIndexChanged(QString type)
 
 void AddGroupDialog::on_numberOfTravelers_valueChanged(int passengers)
 {
-    ui->passenger1Name->setEnabled(false);
-    ui->passenger2Name->setEnabled(false);
-    ui->passenger3Name->setEnabled(false);
-    ui->passenger4Name->setEnabled(false);
-    ui->passenger5Name->setEnabled(false);
-
-    switch (passengers) {
-    case 5:
-        ui->passenger5Name->setEnabled(true);
-    case 4:
-        ui->passenger4Name->setEnabled(true);
-    case 3:
-        ui->passenger3Name->setEnabled(true);
-    case 2:
-        ui->passenger2Name->setEnabled(true);
-    case 1:
-        ui->passenger1Name->setEnabled(true);
-        break;
+    for(int i=0; i<passengers; i++) {
+        passengerName[i]->setEnabled(true);
     }
+
+    for(int i=passengers; i<5; i++) {
+        passengerName[i]->setEnabled(false);
+    }
+}
+
+void AddGroupDialog::on_buttonBox_accepted()
+{
+    Group tmpGroup;
+    for(int i=0; i<ui->numberOfTravelers->value(); i++) {
+        Person tmpPerson;
+        tmpPerson.setName(passengerName[i]->text().toStdString());
+        tmpGroup.addPerson(tmpPerson);
+    }
+    bool success = reservation->addGroup(tmpGroup);
 }

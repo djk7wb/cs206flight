@@ -24,6 +24,7 @@ protected:
 private:
     Ui::MainWindow *ui;
     QPushButton *btnSeats[ReservationSys::ROWS][ReservationSys::COLS];
+    ReservationSys reservations;
 
 private slots:
     void on_addGroup_clicked();

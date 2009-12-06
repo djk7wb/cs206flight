@@ -24,6 +24,11 @@ void ShowGroupDialog::setSender(QString t)
     sender = t;
 }
 
+void ShowGroupDialog::setReservationSys(ReservationSys *r)
+{
+    reservation = r;
+}
+
 void ShowGroupDialog::changeEvent(QEvent *e)
 {
     QDialog::changeEvent(e);

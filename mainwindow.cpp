@@ -77,6 +77,7 @@ void MainWindow::on_action_New_Flight_triggered()
 void MainWindow::on_addGroup_clicked()
 {
     AddGroupDialog d;
+    d.setReservationSys(&reservations);
     d.exec();
 }
 
