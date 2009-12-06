@@ -6,6 +6,7 @@
 #include <QSpacerItem>
 #include "ReservationSys.h"
 #include "addgroupdialog.h"
+#include "showgroupdialog.h"
 
 namespace Ui {
     class MainWindow;
@@ -30,6 +31,7 @@ private slots:
     void on_actionLoad_Flight_triggered();
     void on_actionSave_Flight_triggered();
     void on_actionQuit_triggered();
+    void groupClicked();
 };
 
 #endif // MAINWINDOW_H

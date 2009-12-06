@@ -27,6 +27,8 @@ void AddGroupDialog::changeEvent(QEvent *e)
 
 void AddGroupDialog::on_travelerType_currentIndexChanged(QString type)
 {
+    ui->numberOfTravelers->setMinimum(1);
+
     if (type == "Businessman") {
         ui->smokingPreference->setEnabled(true);
         ui->numberOfTravelers->setValue(1);

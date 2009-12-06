@@ -8,13 +8,16 @@ SOURCES += main.cpp \
     ReservationSys.cpp \
     Person.cpp \
     Group.cpp \
-    addgroupdialog.cpp
+    addgroupdialog.cpp \
+    showgroupdialog.cpp
 HEADERS += mainwindow.h \
     ReservationSys.h \
     Person.h \
     Group.h \
-    addgroupdialog.h
+    addgroupdialog.h \
+    showgroupdialog.h
 FORMS += mainwindow.ui \
-    addgroupdialog.ui
+    addgroupdialog.ui \
+    showgroupdialog.ui
 OTHER_FILES += README \
     DESIGN

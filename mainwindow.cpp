@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
                     btnSeats[row][col]->setStyleSheet("font-size: 8pt;");
                     btnSeats[row][col]->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
                     btnSeats[row][col]->resize(10, 10);
+                    connect(btnSeats[row][col], SIGNAL(clicked()), this, SLOT(groupClicked()));
                     ui->gridLayout->addWidget(btnSeats[row][col], i, j);
                 }
             }
@@ -77,4 +78,12 @@ void MainWindow::on_addGroup_clicked()
 {
     AddGroupDialog d;
     d.exec();
+}
+
+void MainWindow::groupClicked()
+{
+    ShowGroupDialog d;
+    QPushButton *sender = (QPushButton*) this->sender();
+    d.setSender(sender->text());
+    d.doExec();
 }
