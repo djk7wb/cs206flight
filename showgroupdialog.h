@@ -2,6 +2,7 @@
 #define SHOWGROUPDIALOG_H
 
 #include <QDialog>
+#include <QMessageBox>
 #include "ReservationSys.h"
 
 namespace Ui {

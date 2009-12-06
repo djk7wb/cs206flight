@@ -52,7 +52,7 @@ void AddGroupDialog::on_travelerType_currentIndexChanged(QString type)
         ui->numberOfTravelers->setValue(2);
         ui->numberOfTravelers->setEnabled(false);
     }
-    else {
+    else if (type == "Family"){
         ui->smokingPreference->setEnabled(false);
         ui->numberOfTravelers->setValue(3);
         ui->numberOfTravelers->setMinimum(3);
@@ -75,10 +75,41 @@ void AddGroupDialog::on_numberOfTravelers_valueChanged(int passengers)
 void AddGroupDialog::on_buttonBox_accepted()
 {
     Group tmpGroup;
+    if (ui->travelerType->currentText() == "Businessman") {
+        tmpGroup.type = BUSINESS;
+    }
+    else if (ui->travelerType->currentText() == "Tourists") {
+        tmpGroup.type = TOURISTS;
+    }
+    else if (ui->travelerType->currentText() == "Family") {
+        tmpGroup.type = FAMILY;
+    }
+
     for(int i=0; i<ui->numberOfTravelers->value(); i++) {
         Person tmpPerson;
+        if(passengerName[i]->text() == "") {
+            QMessageBox::critical(this, "Error", "Passenger name must be specified", QMessageBox::Ok | QMessageBox::Default);
+            return;
+        }
         tmpPerson.setName(passengerName[i]->text().toStdString());
         tmpGroup.addPerson(tmpPerson);
     }
-    bool success = reservation->addGroup(tmpGroup);
+
+    if(ui->smokingPreference) {
+        tmpGroup.smokingPreference = true;
+    }
+    else {
+        tmpGroup.smokingPreference = false;
+    }
+
+    if(!reservation->addGroup(tmpGroup)) {
+        QMessageBox::critical(this, "Error", "Adding group failed. Possible causes include not enough remaining seats on flight.", QMessageBox::Ok | QMessageBox::Default);
+        done(1);
+    }
+    done(0);
+}
+
+void AddGroupDialog::accept()
+{
+    return;
 }

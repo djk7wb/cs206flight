@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QLineEdit>
+#include <QMessageBox>
 #include "ReservationSys.h"
 
 namespace Ui {
@@ -23,6 +24,7 @@ private:
     Ui::AddGroupDialog *ui;
     ReservationSys *reservation;
     QLineEdit *passengerName[5];
+    void accept();
 
 private slots:
     void on_buttonBox_accepted();
