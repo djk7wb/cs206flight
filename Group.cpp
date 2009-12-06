@@ -10,12 +10,11 @@ Group::Group()
   type = BUSINESS;
   smokingPreference = false;
   satisfaction = 0;
-  numMembers = 0;
 }
 
 Group::Group(const Group& original)
 {
-  for (int i = 0; i < original.numMembers; i++)
+  for (int i = 0; i < int(original.members.size()); i++)
   {
     addPerson(original.members[i]);
   }
@@ -23,28 +22,12 @@ Group::Group(const Group& original)
   smokingPreference = original.smokingPreference;
   satisfaction = original.satisfaction;
   groupID = original.groupID;
-  numMembers = original.numMembers;
-}
-
-Group& Group::operator=(const Group& original)
-{
-  for (int i = 0; i < original.numMembers; i++)
-  {
-    addPerson(original.members[i]);
-  }
-  type = original.type;
-  smokingPreference = original.smokingPreference;
-  satisfaction = original.satisfaction;
-  groupID = original.groupID;
-  numMembers = original.numMembers;
-  return *this;
 }
 
 bool Group::addPerson(Person newPerson)
 {
   newPerson.groupID = groupID;
-  members[numMembers] = newPerson;
-  numMembers++;
+  members.push_back(newPerson);
   return true;
 }
 

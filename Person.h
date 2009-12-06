@@ -10,21 +10,19 @@ class Group;
 class Person
 {
   public:
-  Person();
-  Person(const Person& other);
-  Person& operator=(const Person& other);
   void setName(string newName){name=newName;};
   string getName(){return name;};
-  //Group* getGroup(){return p_group;}; Use ReservationSys::getGroup(int,int)
+  Group* getGroup(){return p_group;};
   int getRow(){return row;};
   int getCol(){return col;};
+  int getGroupID(){return groupID;};
 
   private:
-  //Group* p_group; //Removed in favor of groupID
-  int groupID;
+  Group* p_group;
   string name;
   int row;
   int col;
+  int groupID;
 
   friend class Group;
   friend class ReservationSys;

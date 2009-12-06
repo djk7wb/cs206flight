@@ -4,10 +4,6 @@
 #include <iostream>
 #include <vector>
 
-#define _ROWS 20
-#define _COLS 6
-#define _SMOKE_ROWS 3
-
 using namespace std;
 
 #include "Person.h"
@@ -20,8 +16,7 @@ class ReservationSys
   static const int COL_VALUE = 5;
   static const int ADJACENT_VALUE = 10;
   Person*** seats;
-  Group groups[_ROWS*_COLS];
-  int numGroups;
+  vector<Group> groups;
 
   bool validSeating(vector<int> chosenSeatNums);
   int seatingValue(Group g, vector<int> chosenSeatNums);
@@ -29,9 +24,9 @@ class ReservationSys
   int aislesAvailable();
 
   public:
-  static const int ROWS = _ROWS;
-  static const int COLS = _COLS;
-  static const int SMOKE_ROWS = _SMOKE_ROWS;
+  static const int ROWS = 20;
+  static const int COLS = 6;
+  static const int SMOKE_ROWS = 3;
   ReservationSys();
   ~ReservationSys();
   bool addGroup(Group);
@@ -41,6 +36,7 @@ class ReservationSys
   void ticketGenerator(Group);
   void satisfactionReport();
   Person* getSeat(int row, int col){return seats[row][col];};
+  vector<Group> getGroups(){return groups;};
   Group* getGroup(int row, int col);
 
   friend ostream& operator<<(ostream& out, ReservationSys& rhs);
