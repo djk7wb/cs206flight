@@ -23,6 +23,7 @@ Group::Group(const Group& original)
   smokingPreference = original.smokingPreference;
   satisfaction = original.satisfaction;
   groupID = original.groupID;
+  numMembers = original.numMembers;
 }
 
 Group& Group::operator=(const Group& original)
@@ -35,6 +36,7 @@ Group& Group::operator=(const Group& original)
   smokingPreference = original.smokingPreference;
   satisfaction = original.satisfaction;
   groupID = original.groupID;
+  numMembers = original.numMembers;
   return *this;
 }
 
