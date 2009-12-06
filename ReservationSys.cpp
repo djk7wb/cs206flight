@@ -19,6 +19,8 @@ ReservationSys::ReservationSys()
 
 ReservationSys::~ReservationSys()
 {
+  //People will fall out of scope with their group.
+  /*
   for (int i = 0; i < ROWS; i++)
   {
     for (int j = 0; j < COLS; j++)
@@ -26,6 +28,7 @@ ReservationSys::~ReservationSys()
       delete seats[i][j];
     }
   }
+*/
   for (int i = 0; i < ROWS; i++)
   {
     delete [] *(seats+i);
@@ -115,10 +118,9 @@ bool ReservationSys::addGroup(Group newGroup)
     for (int i = 0; i < int(bestSeats.size()); i++)
     {
       int seatNum = bestSeats[i];
-      seats[seatNum/COLS][seatNum%COLS] = new Person;
+      seats[seatNum/COLS][seatNum%COLS] = &groups.back().members[i];
       seats[seatNum/COLS][seatNum%COLS]->row = seatNum/COLS;
       seats[seatNum/COLS][seatNum%COLS]->col = seatNum%COLS;
-      *(seats[seatNum/COLS][seatNum%COLS]) = groups.back().members[i];
     }
   }
   return (bestValue != INVALID);
