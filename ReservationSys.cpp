@@ -188,7 +188,7 @@ int ReservationSys::seatingValue(Group g, vector<int> chosenSeatNums)
 {
   int value = 0;
 
-  sort(chosenSeatNums.begin(), chosenSeatNums.end());
+  //sort(chosenSeatNums.begin(), chosenSeatNums.end());
 
   bool adjacent = true;
   int prevRow = -1;

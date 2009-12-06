@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QSpacerItem>
 #include "ReservationSys.h"
+#include "addgroupdialog.h"
 
 namespace Ui {
     class MainWindow;
@@ -24,6 +25,7 @@ private:
     QPushButton *btnSeats[ReservationSys::ROWS][ReservationSys::COLS];
 
 private slots:
+    void on_addGroup_clicked();
     void on_action_New_Flight_triggered();
     void on_actionLoad_Flight_triggered();
     void on_actionSave_Flight_triggered();

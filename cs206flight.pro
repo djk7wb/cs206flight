@@ -7,11 +7,14 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     ReservationSys.cpp \
     Person.cpp \
-    Group.cpp
+    Group.cpp \
+    addgroupdialog.cpp
 HEADERS += mainwindow.h \
     ReservationSys.h \
     Person.h \
-    Group.h
-FORMS += mainwindow.ui
+    Group.h \
+    addgroupdialog.h
+FORMS += mainwindow.ui \
+    addgroupdialog.ui
 OTHER_FILES += README \
     DESIGN

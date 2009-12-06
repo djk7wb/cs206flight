@@ -9,12 +9,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     for (int i = 0; i <= ReservationSys::ROWS; i++) {
         if(i==ReservationSys::ROWS-ReservationSys::SMOKE_ROWS) {
-            ui->gridLayout->setRowMinimumHeight(i,50);
+            ui->gridLayout->setRowMinimumHeight(i,20);
         }
         else {
             for (int j = 0; j <= ReservationSys::COLS; j++) {
                 if(j==ReservationSys::COLS/2) {
-                    ui->gridLayout->setColumnMinimumWidth(j,50);
+                    ui->gridLayout->setColumnMinimumWidth(j,20);
                 }
                 else {
                     int row = i;
@@ -26,6 +26,9 @@ MainWindow::MainWindow(QWidget *parent) :
                         col--;
                     }
                     btnSeats[row][col] = new QPushButton(tr("%1%2").arg(char(row+65)).arg(col+1));
+                    btnSeats[row][col]->setStyleSheet("font-size: 8pt;");
+                    btnSeats[row][col]->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+                    btnSeats[row][col]->resize(10, 10);
                     ui->gridLayout->addWidget(btnSeats[row][col], i, j);
                 }
             }
@@ -68,4 +71,10 @@ void MainWindow::on_actionLoad_Flight_triggered()
 void MainWindow::on_action_New_Flight_triggered()
 {
 
+}
+
+void MainWindow::on_addGroup_clicked()
+{
+    AddGroupDialog d;
+    d.exec();
 }
