@@ -79,6 +79,7 @@ void MainWindow::on_addGroup_clicked()
     AddGroupDialog d;
     d.setReservationSys(&reservations);
     d.exec();
+    updateButtons();
 }
 
 void MainWindow::groupClicked()
@@ -88,4 +89,30 @@ void MainWindow::groupClicked()
     d.setSender(sender->text());
     d.setReservationSys(&reservations);
     d.doExec();
+    updateButtons();
+}
+
+void MainWindow::updateButtons()
+{
+    for(int i=0; i<ReservationSys::ROWS; i++) {
+        for(int j=0; j<ReservationSys::COLS; j++) {
+            Person *tmpPerson = reservations.getSeat(i,j);
+            if(tmpPerson) {
+                Group *tmpGroup = tmpPerson->getGroup();
+                if(tmpGroup->type == BUSINESS) {
+                    btnSeats[i][j]->setStyleSheet("font-size: 8pt; background-color: #ff0000;");
+                }
+                else if(tmpGroup->type == TOURISTS) {
+                    btnSeats[i][j]->setStyleSheet("font-size: 8pt; background-color: #00ff00;");
+                }
+                else if(tmpGroup->type == FAMILY) {
+                    btnSeats[i][j]->setStyleSheet("font-size: 8pt; background-color: #0000ff;");
+                }
+            }
+            else {
+                btnSeats[i][j]->setStyleSheet("font-size: 8pt;");
+            }
+        }
+    }
+    repaint();
 }

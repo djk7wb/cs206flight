@@ -23,6 +23,7 @@ protected:
     void changeEvent(QEvent *e);
 
 private:
+    void updateButtons();
     Ui::MainWindow *ui;
     QPushButton *btnSeats[ReservationSys::ROWS][ReservationSys::COLS];
     ReservationSys reservations;
