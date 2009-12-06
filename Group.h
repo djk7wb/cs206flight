@@ -26,6 +26,7 @@ class Group
   int groupID;
   static int nextID;
   bool toTicket();
+  vector<Person> getMembers(){return members;};
 
   private:
   vector<Person> members;
