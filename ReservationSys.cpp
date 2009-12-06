@@ -15,6 +15,7 @@ ReservationSys::ReservationSys()
       seats[i][j] = NULL;
     }
   }
+  numGroups = 0;
 }
 
 ReservationSys::~ReservationSys()
@@ -58,11 +59,11 @@ bool ReservationSys::addGroup(Group newGroup)
   }
 
   //Try adjacent seating only
-  for (int i = 0; i < int(newGroup.members.size()); i++)
+  for (int i = 0; i < newGroup.numMembers; i++)
   {
     chosenSeatNums.push_back(i);
   }
-  while ((chosenSeatNums[0] <= ROWS*COLS - int(newGroup.members.size()))
+  while ((chosenSeatNums[0] <= ROWS*COLS - newGroup.numMembers)
           && bestValue < bestPossible)
   {
     if (validSeating(chosenSeatNums))
@@ -87,14 +88,14 @@ bool ReservationSys::addGroup(Group newGroup)
   else if(newGroup.type == FAMILY)
   {
     bestPossible = -ADJACENT_VALUE
-    + COL_VALUE*min(int(newGroup.members.size()), aislesAvailable());
+    + COL_VALUE*min(newGroup.numMembers, aislesAvailable());
   }
   chosenSeatNums.clear();
-  for (int i = 0; i < int(newGroup.members.size()); i++)
+  for (int i = 0; i < newGroup.numMembers; i++)
   {
     chosenSeatNums.push_back(i);
   }
-  while ((chosenSeatNums[0] <= ROWS*COLS - int(newGroup.members.size()))
+  while ((chosenSeatNums[0] <= ROWS*COLS - newGroup.numMembers)
           && bestValue < bestPossible)
   {
     if (validSeating(chosenSeatNums))
@@ -113,12 +114,13 @@ bool ReservationSys::addGroup(Group newGroup)
   if (bestValue != INVALID)
   {
     newGroup.satisfaction = bestValue;
-    groups.push_back(newGroup);
+    groups[numGroups] = newGroup;
+    numGroups++;
 
     for (int i = 0; i < int(bestSeats.size()); i++)
     {
       int seatNum = bestSeats[i];
-      seats[seatNum/COLS][seatNum%COLS] = &groups.back().members[i];
+      seats[seatNum/COLS][seatNum%COLS] = &(groups[numGroups-1].members[i]);
       seats[seatNum/COLS][seatNum%COLS]->row = seatNum/COLS;
       seats[seatNum/COLS][seatNum%COLS]->col = seatNum%COLS;
     }
@@ -275,7 +277,7 @@ int ReservationSys::seatingValue(Group g, vector<int> chosenSeatNums)
 bool ReservationSys::removeGroup(Group *oldGroup)
 {
   int targetIndex = -1;
-  for (int i = 0; i < int(groups.size()); i++)
+  for (int i = 0; i < numGroups; i++)
   {
     if (groups[i].groupID == oldGroup->groupID)
     {
@@ -289,16 +291,38 @@ bool ReservationSys::removeGroup(Group *oldGroup)
     {
       for (int j = 0; j < COLS; j++)
       {
-        if (seats[i][j] && seats[i][j]->p_group == oldGroup)
+        if (seats[i][j] && seats[i][j]->groupID == oldGroup->groupID)
         {
           seats[i][j] = NULL;
         }
       }
     }
-    groups.erase(groups.begin()+targetIndex);
+    for (int i = targetIndex; i < numGroups-1;i++)
+    {
+      groups[i] = groups[i+1];
+    }
+    numGroups -= 1;
   }
 
   return true;
+}
+
+Group* ReservationSys::getGroup(int row, int col)
+{
+  int myGroupID = -1;
+  if (seats[row][col] != NULL)
+  {
+    myGroupID = seats[row][col]->groupID;
+    for (int i = 0; i < numGroups; i++)
+    {
+      if (groups[i].groupID == myGroupID)
+      {
+        cout << myGroupID << endl;
+        return &groups[i];
+      }
+    }
+  }
+  return NULL;
 }
 
 ostream& operator<<(ostream& out, ReservationSys& rhs)
@@ -319,10 +343,17 @@ ostream& operator<<(ostream& out, ReservationSys& rhs)
       {
         out << "_ ";
       }
+      /*
       else
       {
-        out << "X ";
+        if (rhs.getGroup(i,j)->type == FAMILY)
+          out << "F ";
+        else if  (rhs.getGroup(i,j)->type == TOURISTS)
+          out << "T ";
+        else
+          out << "B ";
       }
+      */
     }
     out << "\n";
   }

@@ -19,17 +19,21 @@ class Group
   public:
   Group();
   Group(const Group& original);
-  bool addPerson(Person);
+  Group& operator=(const Group& other);
+
+  bool addPerson(Person newPerson);
   GroupType type;
   bool smokingPreference;
   int satisfaction;
   int groupID;
   static int nextID;
   bool toTicket();
-  vector<Person> getMembers(){return members;};
+  Person* getMembers(){return members;};
+  int getNumMembers(){return numMembers;};
 
   private:
-  vector<Person> members;
+  Person members[5];
+  int numMembers;
 
   friend class ReservationSys;
 };
