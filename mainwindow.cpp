@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
                     if(j > ReservationSys::COLS/2) {
                         col--;
                     }
-                    btnSeats[row][col] = new QPushButton(tr("%1%2").arg(char(row+65)).arg(col+1));
+                    btnSeats[row][col] = new QPushButton(tr("%1%2").arg(char(row+'A')).arg(col+1));
                     btnSeats[row][col]->setStyleSheet("font-size: 8pt;");
                     btnSeats[row][col]->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
                     btnSeats[row][col]->resize(10, 10);
@@ -86,5 +86,6 @@ void MainWindow::groupClicked()
     ShowGroupDialog d;
     QPushButton *sender = (QPushButton*) this->sender();
     d.setSender(sender->text());
+    d.setReservationSys(&reservations);
     d.doExec();
 }

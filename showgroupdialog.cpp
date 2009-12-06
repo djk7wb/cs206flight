@@ -16,6 +16,28 @@ ShowGroupDialog::~ShowGroupDialog()
 int ShowGroupDialog::doExec()
 {
     ui->groupInfo->appendPlainText("Showing information for group at seat " + sender);
+    int row = ((int)sender.at(0).toAscii()) - (int)'A';
+    int col = ((int)sender.at(1).toAscii()) - (int)'1';
+    Person *tmpPerson = reservation->getSeat(row, col);
+    if(!tmpPerson) {
+        QMessageBox::warning(this, "Error", "This seat is not occupied", QMessageBox::Ok);
+        return 1;
+    }
+    Group *tmpGroup = tmpPerson->getGroup();
+
+
+
+    QString smokingPreference = "No";
+    if(tmpGroup->smokingPreference) {
+        smokingPreference = "Yes";
+    }
+
+    ui->groupInfo->appendPlainText("");
+    ui->groupInfo->appendPlainText("Smoking preference: " + smokingPreference);
+    ui->groupInfo->appendPlainText("Group satisfaction: " + QString().setNum(tmpGroup->satisfaction));
+
+    group = tmpGroup;
+
     return this->exec();
 }
 

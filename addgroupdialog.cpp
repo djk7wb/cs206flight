@@ -95,7 +95,7 @@ void AddGroupDialog::on_buttonBox_accepted()
         tmpGroup.addPerson(tmpPerson);
     }
 
-    if(ui->smokingPreference) {
+    if(ui->smokingPreference->isChecked()) {
         tmpGroup.smokingPreference = true;
     }
     else {
