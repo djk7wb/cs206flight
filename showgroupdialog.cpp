@@ -18,17 +18,17 @@ int ShowGroupDialog::doExec()
     ui->groupInfo->appendPlainText("Showing information for group at seat " + sender);
     int row = ((int)sender.at(0).toAscii()) - (int)'A';
     int col = ((int)sender.at(1).toAscii()) - (int)'1';
-    Person *tmpPerson = reservation->getSeat(row, col);
-    if(!tmpPerson) {
+    Group *tmpGroup = reservation->getGroup(row, col);
+    if(!tmpGroup) {
         QMessageBox::warning(this, "Error", "This seat is not occupied", QMessageBox::Ok);
         return 1;
     }
-    Group *tmpGroup = tmpPerson->getGroup();
 
-    vector<Person> passengers = tmpGroup->getMembers();
-    for(int i=0; i<(int)passengers.size(); i++) {
-        Person tmpPassenger = passengers.at(i);
-        ui->groupInfo->appendPlainText(tr("Passenger %1: %2").arg(i+1).arg(tmpPassenger.getName().c_str()));
+    Person *passengers = tmpGroup->getMembers();
+    for(int i=0; i<tmpGroup->getNumMembers(); i++) {
+        Person tmpPassenger = passengers[i];
+        QString seat = tr("[%1%2]").arg(tmpPassenger.getRow()+'A').arg(tmpPassenger.getCol()+1);
+        ui->groupInfo->appendPlainText(tr("Passenger %1 %2: %2").arg(i+1).arg(seat).arg(tmpPassenger.getName().c_str()));
     }
 
     QString smokingPreference = "No";

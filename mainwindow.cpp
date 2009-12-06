@@ -96,9 +96,8 @@ void MainWindow::updateButtons()
 {
     for(int i=0; i<ReservationSys::ROWS; i++) {
         for(int j=0; j<ReservationSys::COLS; j++) {
-            Person *tmpPerson = reservations.getSeat(i,j);
-            if(tmpPerson) {
-                Group *tmpGroup = tmpPerson->getGroup();
+            Group *tmpGroup = reservations.getGroup(i,j);
+            if(tmpGroup) {
                 if(tmpGroup->type == BUSINESS) {
                     btnSeats[i][j]->setStyleSheet("font-size: 8pt; background-color: #ff0000;");
                 }
