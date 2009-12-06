@@ -25,6 +25,7 @@ private:
     Ui::ShowGroupDialog *ui;
     QString sender;
     ReservationSys *reservation;
+    Group *group;
 
 private slots:
     void on_remove_clicked();
