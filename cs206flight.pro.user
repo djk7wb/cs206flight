@@ -58,6 +58,7 @@
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <value key="QtVersionId" type="int">0</value>
    <value key="ToolChain" type="int">0</value>
+   <value key="addQDumper" type=""></value>
    <value key="buildConfiguration" type="int">2</value>
   </valuemap>
  </data>
@@ -66,6 +67,7 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Release</value>
    <value key="QtVersionId" type="int">0</value>
+   <value key="addQDumper" type=""></value>
    <value key="buildConfiguration" type="int">0</value>
   </valuemap>
  </data>
@@ -73,12 +75,101 @@
   <variable>buildconfiguration-Debug-buildstep0</variable>
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
+   <valuelist key="abstractProcess.Environment" type="QVariantList">
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-MrLbbntPvM,guid=fcf0e82f1e42cf82d1ccde4e4b1ae5be</value>
+    <value type="QString">DESKTOP_SESSION=gnome</value>
+    <value type="QString">DISPLAY=:0.0</value>
+    <value type="QString">GDMSESSION=gnome</value>
+    <value type="QString">GDM_KEYBOARD_LAYOUT=us</value>
+    <value type="QString">GDM_LANG=en_US.UTF-8</value>
+    <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
+    <value type="QString">GNOME_KEYRING_PID=2460</value>
+    <value type="QString">GNOME_KEYRING_SOCKET=/tmp/keyring-3KmrBj/socket</value>
+    <value type="QString">GPG_AGENT_INFO=/tmp/seahorse-H9AQw9/S.gpg-agent:2544:1</value>
+    <value type="QString">GTK_MODULES=canberra-gtk-module</value>
+    <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/home/dougk/.gtkrc-1.2-gnome2</value>
+    <value type="QString">HOME=/home/dougk</value>
+    <value type="QString">LANG=en_US.UTF-8</value>
+    <value type="QString">LD_LIBRARY_PATH=/opt/qtcreator-1.3.0/lib/qtcreator:</value>
+    <value type="QString">LOGNAME=dougk</value>
+    <value type="QString">ORACLE_HOME=/usr/lib/oracle/xe/app/oracle/product/10.2.0/server</value>
+    <value type="QString">ORACLE_SID=XE</value>
+    <value type="QString">ORBIT_SOCKETDIR=/tmp/orbit-dougk</value>
+    <value type="QString">PATH=/usr/bin:/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/android1.5/tools</value>
+    <value type="QString">PWD=/home/dougk</value>
+    <value type="QString">QTDIR=/usr/share/qt4</value>
+    <value type="QString">SDL_AUDIODRIVER=pulse</value>
+    <value type="QString">SESSION_MANAGER=local/ichigo:@/tmp/.ICE-unix/2475,unix/ichigo:/tmp/.ICE-unix/2475</value>
+    <value type="QString">SHELL=/bin/bash</value>
+    <value type="QString">SPEECHD_PORT=7560</value>
+    <value type="QString">SSH_AGENT_PID=2521</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-3KmrBj/socket.ssh</value>
+    <value type="QString">TNS_ADMIN=/etc/oracle</value>
+    <value type="QString">USER=dougk</value>
+    <value type="QString">USERNAME=dougk</value>
+    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-dougk-ZDhezK/database</value>
+    <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/</value>
+    <value type="QString">XDG_SESSION_COOKIE=fea7739e3a09064adf3ce22749c63321-1260053949.156936-1279176059</value>
+   </valuelist>
+   <valuelist key="abstractProcess.arguments" type="QVariantList">
+    <value type="QString">/home/dougk/djk7wb-cs206flight/cs206flight.pro</value>
+    <value type="QString">-spec</value>
+    <value type="QString">linux-g++</value>
+    <value type="QString">-r</value>
+    <value type="QString">CONFIG+=debug</value>
+   </valuelist>
+   <value key="abstractProcess.command" type="QString">/usr/bin/qmake-qt4</value>
+   <value key="abstractProcess.enabled" type="bool">false</value>
+   <value key="abstractProcess.workingDirectory" type="QString">/home/dougk/djk7wb-cs206flight</value>
   </valuemap>
  </data>
  <data>
   <variable>buildconfiguration-Debug-buildstep1</variable>
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
+   <valuelist key="abstractProcess.Environment" type="QVariantList">
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-MrLbbntPvM,guid=fcf0e82f1e42cf82d1ccde4e4b1ae5be</value>
+    <value type="QString">DESKTOP_SESSION=gnome</value>
+    <value type="QString">DISPLAY=:0.0</value>
+    <value type="QString">GDMSESSION=gnome</value>
+    <value type="QString">GDM_KEYBOARD_LAYOUT=us</value>
+    <value type="QString">GDM_LANG=en_US.UTF-8</value>
+    <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
+    <value type="QString">GNOME_KEYRING_PID=2460</value>
+    <value type="QString">GNOME_KEYRING_SOCKET=/tmp/keyring-3KmrBj/socket</value>
+    <value type="QString">GPG_AGENT_INFO=/tmp/seahorse-H9AQw9/S.gpg-agent:2544:1</value>
+    <value type="QString">GTK_MODULES=canberra-gtk-module</value>
+    <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/home/dougk/.gtkrc-1.2-gnome2</value>
+    <value type="QString">HOME=/home/dougk</value>
+    <value type="QString">LANG=en_US.UTF-8</value>
+    <value type="QString">LD_LIBRARY_PATH=/opt/qtcreator-1.3.0/lib/qtcreator:</value>
+    <value type="QString">LOGNAME=dougk</value>
+    <value type="QString">ORACLE_HOME=/usr/lib/oracle/xe/app/oracle/product/10.2.0/server</value>
+    <value type="QString">ORACLE_SID=XE</value>
+    <value type="QString">ORBIT_SOCKETDIR=/tmp/orbit-dougk</value>
+    <value type="QString">PATH=/usr/bin:/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/android1.5/tools</value>
+    <value type="QString">PWD=/home/dougk</value>
+    <value type="QString">QTDIR=/usr/share/qt4</value>
+    <value type="QString">SDL_AUDIODRIVER=pulse</value>
+    <value type="QString">SESSION_MANAGER=local/ichigo:@/tmp/.ICE-unix/2475,unix/ichigo:/tmp/.ICE-unix/2475</value>
+    <value type="QString">SHELL=/bin/bash</value>
+    <value type="QString">SPEECHD_PORT=7560</value>
+    <value type="QString">SSH_AGENT_PID=2521</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-3KmrBj/socket.ssh</value>
+    <value type="QString">TNS_ADMIN=/etc/oracle</value>
+    <value type="QString">USER=dougk</value>
+    <value type="QString">USERNAME=dougk</value>
+    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-dougk-ZDhezK/database</value>
+    <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/</value>
+    <value type="QString">XDG_SESSION_COOKIE=fea7739e3a09064adf3ce22749c63321-1260053949.156936-1279176059</value>
+   </valuelist>
+   <value key="abstractProcess.IgnoreReturnValue" type="bool">false</value>
+   <valuelist key="abstractProcess.arguments" type="QVariantList">
+    <value type="QString">-w</value>
+   </valuelist>
+   <value key="abstractProcess.command" type="QString">/usr/bin/make</value>
+   <value key="abstractProcess.enabled" type="bool">true</value>
+   <value key="abstractProcess.workingDirectory" type="QString">/home/dougk/djk7wb-cs206flight</value>
   </valuemap>
  </data>
  <data>
