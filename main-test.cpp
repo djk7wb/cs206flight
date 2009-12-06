@@ -8,6 +8,7 @@ int main()
   ReservationSys testSys;
   vector<Group> allGroups;
   Person testPerson;
+  testPerson.setName("Joe Miner");
   int input;
 
   do

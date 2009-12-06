@@ -9,6 +9,10 @@ class Group;
 
 class Person
 {
+  public:
+  void setName(string newName);
+
+  private:
   Group* p_group;
   string name;
 
