@@ -347,14 +347,6 @@ ostream& operator<<(ostream& out, ReservationSys& rhs)
     out << "\n";
   }
 
-  /*
-  out << "Satisfaction Levels" << endl;
-  for (int i = 0; i < int(rhs.groups.size()); i++)
-  {
-    out << "  Group " << rhs.groups[i].groupID << " : "
-        << rhs.groups[i].satisfaction << endl;
-  }
-  */
   return out;
 }
 
@@ -362,7 +354,7 @@ vector<Group*> ReservationSys::polledGroups()
 {
   const int NUM_POLLED = 10;
   vector<Group*> polled = groups;
-  srand(time(NULL));
+  srand((unsigned int)time(NULL));
   while ((int)polled.size() > NUM_POLLED)
   {
     int target = rand()%( (int)groups.size());

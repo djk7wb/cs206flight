@@ -76,50 +76,43 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">COLORTERM=gnome-terminal</value>
-    <value type="QString">CVS_RSH=ssh</value>
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-7HWaHF7VCW,guid=5c91dbe6dd427550dcb90b004b1be81a</value>
-    <value type="QString">DESKTOP_SESSION=default</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-MrLbbntPvM,guid=fcf0e82f1e42cf82d1ccde4e4b1ae5be</value>
+    <value type="QString">DESKTOP_SESSION=gnome</value>
     <value type="QString">DISPLAY=:0.0</value>
-    <value type="QString">EDITOR=vim</value>
-    <value type="QString">GDMSESSION=default</value>
-    <value type="QString">GDM_XSERVER_LOCATION=local</value>
-    <value type="QString">GNOME_DESKTOP_SESSION_ID=Default</value>
-    <value type="QString">GNOME_KEYRING_SOCKET=/tmp/keyring-VB6Y3z/socket</value>
-    <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/nethome/users/djk7wb/.gtkrc-1.2-gnome2</value>
-    <value type="QString">G_BROKEN_FILENAMES=1</value>
-    <value type="QString">HISTSIZE=1000</value>
-    <value type="QString">HOME=/nethome/users/djk7wb</value>
-    <value type="QString">HOSTNAME=rc06xcs213</value>
-    <value type="QString">INPUTRC=/etc/inputrc</value>
-    <value type="QString">JAVA_HOME=/usr/java/latest</value>
-    <value type="QString">JDKROOT=/usr/java/latest</value>
-    <value type="QString">KRB5CCNAME=FILE:/tmp/krb5cc_425550_SMZVbP</value>
+    <value type="QString">GDMSESSION=gnome</value>
+    <value type="QString">GDM_KEYBOARD_LAYOUT=us</value>
+    <value type="QString">GDM_LANG=en_US.UTF-8</value>
+    <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
+    <value type="QString">GNOME_KEYRING_PID=2460</value>
+    <value type="QString">GNOME_KEYRING_SOCKET=/tmp/keyring-3KmrBj/socket</value>
+    <value type="QString">GPG_AGENT_INFO=/tmp/seahorse-H9AQw9/S.gpg-agent:2544:1</value>
+    <value type="QString">GTK_MODULES=canberra-gtk-module</value>
+    <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/home/dougk/.gtkrc-1.2-gnome2</value>
+    <value type="QString">HOME=/home/dougk</value>
     <value type="QString">LANG=en_US.UTF-8</value>
-    <value type="QString">LD_LIBRARY_PATH=/tmp/djk7wb/qtcreator-1.3.0/lib/qtcreator:/usr/local/lib:/usr/local/lib/intel:/usr/local/lib/IMSL:/usr/local/lib/Maple10</value>
-    <value type="QString">LESSOPEN=|/usr/bin/lesspipe.sh %s</value>
-    <value type="QString">LOGNAME=djk7wb</value>
-    <value type="QString">LS_COLORS=no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:</value>
-    <value type="QString">MAIL=/var/spool/mail/djk7wb</value>
-    <value type="QString">PATH=/usr/lib/qt4/bin:/usr/java/latest/bin:/usr/java/latest/jre/bin:/usr/kerberos/bin:/usr/java/latest/bin:/usr/java/latest/jre/bin:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:.:.</value>
-    <value type="QString">PWD=/tmp</value>
-    <value type="QString">QTDIR=/usr/lib/qt4</value>
-    <value type="QString">SESSION_MANAGER=local/rc06xcs213:/tmp/.ICE-unix/8121</value>
+    <value type="QString">LD_LIBRARY_PATH=/opt/qtcreator-1.3.0/lib/qtcreator:</value>
+    <value type="QString">LOGNAME=dougk</value>
+    <value type="QString">ORACLE_HOME=/usr/lib/oracle/xe/app/oracle/product/10.2.0/server</value>
+    <value type="QString">ORACLE_SID=XE</value>
+    <value type="QString">ORBIT_SOCKETDIR=/tmp/orbit-dougk</value>
+    <value type="QString">PATH=/usr/bin:/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/android1.5/tools</value>
+    <value type="QString">PWD=/home/dougk</value>
+    <value type="QString">QTDIR=/usr/share/qt4</value>
+    <value type="QString">SDL_AUDIODRIVER=pulse</value>
+    <value type="QString">SESSION_MANAGER=local/ichigo:@/tmp/.ICE-unix/2475,unix/ichigo:/tmp/.ICE-unix/2475</value>
     <value type="QString">SHELL=/bin/bash</value>
-    <value type="QString">SHLVL=2</value>
-    <value type="QString">SSH_AGENT_PID=8171</value>
-    <value type="QString">SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/ssh-CivfHR8121/agent.8121</value>
-    <value type="QString">TCL_LIBRARY=/usr/local/ns-allinone-2.30/lib</value>
-    <value type="QString">TERM=xterm</value>
-    <value type="QString">USER=djk7wb</value>
-    <value type="QString">USERNAME=djk7wb</value>
-    <value type="QString">WINDOWID=25165905</value>
-    <value type="QString">XAUTHORITY=/tmp/.gdmKWHL4U</value>
-    <value type="QString">XMODIFIERS=@im=none</value>
+    <value type="QString">SPEECHD_PORT=7560</value>
+    <value type="QString">SSH_AGENT_PID=2521</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-3KmrBj/socket.ssh</value>
+    <value type="QString">TNS_ADMIN=/etc/oracle</value>
+    <value type="QString">USER=dougk</value>
+    <value type="QString">USERNAME=dougk</value>
+    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-dougk-ZDhezK/database</value>
+    <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/</value>
+    <value type="QString">XDG_SESSION_COOKIE=fea7739e3a09064adf3ce22749c63321-1260053949.156936-1279176059</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList">
-    <value type="QString">/mnt/dfs/djk7wb/users/djk7wb/cs206flight/cs206flight.pro</value>
+    <value type="QString">/home/dougk/djk7wb-cs206flight/cs206flight.pro</value>
     <value type="QString">-spec</value>
     <value type="QString">linux-g++</value>
     <value type="QString">-r</value>
@@ -127,7 +120,7 @@
    </valuelist>
    <value key="abstractProcess.command" type="QString">/usr/bin/qmake-qt4</value>
    <value key="abstractProcess.enabled" type="bool">false</value>
-   <value key="abstractProcess.workingDirectory" type="QString">/mnt/dfs/djk7wb/users/djk7wb/cs206flight</value>
+   <value key="abstractProcess.workingDirectory" type="QString">/home/dougk/djk7wb-cs206flight</value>
   </valuemap>
  </data>
  <data>
@@ -135,47 +128,40 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">COLORTERM=gnome-terminal</value>
-    <value type="QString">CVS_RSH=ssh</value>
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-7HWaHF7VCW,guid=5c91dbe6dd427550dcb90b004b1be81a</value>
-    <value type="QString">DESKTOP_SESSION=default</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-MrLbbntPvM,guid=fcf0e82f1e42cf82d1ccde4e4b1ae5be</value>
+    <value type="QString">DESKTOP_SESSION=gnome</value>
     <value type="QString">DISPLAY=:0.0</value>
-    <value type="QString">EDITOR=vim</value>
-    <value type="QString">GDMSESSION=default</value>
-    <value type="QString">GDM_XSERVER_LOCATION=local</value>
-    <value type="QString">GNOME_DESKTOP_SESSION_ID=Default</value>
-    <value type="QString">GNOME_KEYRING_SOCKET=/tmp/keyring-VB6Y3z/socket</value>
-    <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/nethome/users/djk7wb/.gtkrc-1.2-gnome2</value>
-    <value type="QString">G_BROKEN_FILENAMES=1</value>
-    <value type="QString">HISTSIZE=1000</value>
-    <value type="QString">HOME=/nethome/users/djk7wb</value>
-    <value type="QString">HOSTNAME=rc06xcs213</value>
-    <value type="QString">INPUTRC=/etc/inputrc</value>
-    <value type="QString">JAVA_HOME=/usr/java/latest</value>
-    <value type="QString">JDKROOT=/usr/java/latest</value>
-    <value type="QString">KRB5CCNAME=FILE:/tmp/krb5cc_425550_SMZVbP</value>
+    <value type="QString">GDMSESSION=gnome</value>
+    <value type="QString">GDM_KEYBOARD_LAYOUT=us</value>
+    <value type="QString">GDM_LANG=en_US.UTF-8</value>
+    <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
+    <value type="QString">GNOME_KEYRING_PID=2460</value>
+    <value type="QString">GNOME_KEYRING_SOCKET=/tmp/keyring-3KmrBj/socket</value>
+    <value type="QString">GPG_AGENT_INFO=/tmp/seahorse-H9AQw9/S.gpg-agent:2544:1</value>
+    <value type="QString">GTK_MODULES=canberra-gtk-module</value>
+    <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/home/dougk/.gtkrc-1.2-gnome2</value>
+    <value type="QString">HOME=/home/dougk</value>
     <value type="QString">LANG=en_US.UTF-8</value>
-    <value type="QString">LD_LIBRARY_PATH=/tmp/djk7wb/qtcreator-1.3.0/lib/qtcreator:/usr/local/lib:/usr/local/lib/intel:/usr/local/lib/IMSL:/usr/local/lib/Maple10</value>
-    <value type="QString">LESSOPEN=|/usr/bin/lesspipe.sh %s</value>
-    <value type="QString">LOGNAME=djk7wb</value>
-    <value type="QString">LS_COLORS=no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:</value>
-    <value type="QString">MAIL=/var/spool/mail/djk7wb</value>
-    <value type="QString">PATH=/usr/lib/qt4/bin:/usr/java/latest/bin:/usr/java/latest/jre/bin:/usr/kerberos/bin:/usr/java/latest/bin:/usr/java/latest/jre/bin:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:.:.</value>
-    <value type="QString">PWD=/tmp</value>
-    <value type="QString">QTDIR=/usr/lib/qt4</value>
-    <value type="QString">SESSION_MANAGER=local/rc06xcs213:/tmp/.ICE-unix/8121</value>
+    <value type="QString">LD_LIBRARY_PATH=/opt/qtcreator-1.3.0/lib/qtcreator:</value>
+    <value type="QString">LOGNAME=dougk</value>
+    <value type="QString">ORACLE_HOME=/usr/lib/oracle/xe/app/oracle/product/10.2.0/server</value>
+    <value type="QString">ORACLE_SID=XE</value>
+    <value type="QString">ORBIT_SOCKETDIR=/tmp/orbit-dougk</value>
+    <value type="QString">PATH=/usr/bin:/usr/lib/oracle/xe/app/oracle/product/10.2.0/server/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/android1.5/tools</value>
+    <value type="QString">PWD=/home/dougk</value>
+    <value type="QString">QTDIR=/usr/share/qt4</value>
+    <value type="QString">SDL_AUDIODRIVER=pulse</value>
+    <value type="QString">SESSION_MANAGER=local/ichigo:@/tmp/.ICE-unix/2475,unix/ichigo:/tmp/.ICE-unix/2475</value>
     <value type="QString">SHELL=/bin/bash</value>
-    <value type="QString">SHLVL=2</value>
-    <value type="QString">SSH_AGENT_PID=8171</value>
-    <value type="QString">SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/ssh-CivfHR8121/agent.8121</value>
-    <value type="QString">TCL_LIBRARY=/usr/local/ns-allinone-2.30/lib</value>
-    <value type="QString">TERM=xterm</value>
-    <value type="QString">USER=djk7wb</value>
-    <value type="QString">USERNAME=djk7wb</value>
-    <value type="QString">WINDOWID=25165905</value>
-    <value type="QString">XAUTHORITY=/tmp/.gdmKWHL4U</value>
-    <value type="QString">XMODIFIERS=@im=none</value>
+    <value type="QString">SPEECHD_PORT=7560</value>
+    <value type="QString">SSH_AGENT_PID=2521</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-3KmrBj/socket.ssh</value>
+    <value type="QString">TNS_ADMIN=/etc/oracle</value>
+    <value type="QString">USER=dougk</value>
+    <value type="QString">USERNAME=dougk</value>
+    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-dougk-ZDhezK/database</value>
+    <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/</value>
+    <value type="QString">XDG_SESSION_COOKIE=fea7739e3a09064adf3ce22749c63321-1260053949.156936-1279176059</value>
    </valuelist>
    <value key="abstractProcess.IgnoreReturnValue" type="bool">false</value>
    <valuelist key="abstractProcess.arguments" type="QVariantList">
@@ -183,7 +169,7 @@
    </valuelist>
    <value key="abstractProcess.command" type="QString">/usr/bin/make</value>
    <value key="abstractProcess.enabled" type="bool">true</value>
-   <value key="abstractProcess.workingDirectory" type="QString">/mnt/dfs/djk7wb/users/djk7wb/cs206flight</value>
+   <value key="abstractProcess.workingDirectory" type="QString">/home/dougk/djk7wb-cs206flight</value>
   </valuemap>
  </data>
  <data>
