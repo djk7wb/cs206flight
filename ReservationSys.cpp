@@ -37,7 +37,7 @@ bool ReservationSys::addGroup(Group newGroup)
   vector<int> chosenSeatNums;
   vector<int> bestSeats;
   int newValue;
-  int bestPossible;
+  int bestPossible=0;
 
   switch (newGroup.type)
   {
