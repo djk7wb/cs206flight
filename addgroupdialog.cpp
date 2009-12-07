@@ -54,11 +54,13 @@ void AddGroupDialog::on_travelerType_currentIndexChanged(QString type)
     }
     else if (type == "Tourists") {
         ui->smokingPreference->setEnabled(false);
+        ui->smokingPreference->setChecked(false);
         ui->numberOfTravelers->setValue(2);
         ui->numberOfTravelers->setEnabled(false);
     }
     else if (type == "Family"){
         ui->smokingPreference->setEnabled(false);
+        ui->smokingPreference->setChecked(false);
         ui->numberOfTravelers->setValue(3);
         ui->numberOfTravelers->setMinimum(3);
         ui->numberOfTravelers->setEnabled(true);
