@@ -430,6 +430,10 @@ bool ReservationSys::load(string filename)
     while(!file.eof()) {
         string line;
         getline(file, line);
+        if(line[line.size()-1] == '\r') {
+            // strip windows newlines, if exist.
+            line = line.substr(0, line.size()-1);
+        }
         vector<string> values;
         string delim = ":";
         tokenize(line, &values, delim, 4);
