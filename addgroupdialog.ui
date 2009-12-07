@@ -141,6 +141,12 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>travelerType</tabstop>
+  <tabstop>numberOfTravelers</tabstop>
+  <tabstop>smokingPreference</tabstop>
+  <tabstop>buttonBox</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

@@ -362,7 +362,8 @@ vector<Group*> ReservationSys::polledGroups()
 {
   const int NUM_POLLED = 10;
   vector<Group*> polled = groups;
-  while ((int)groups.size() > NUM_POLLED)
+  srand(time(NULL));
+  while ((int)polled.size() > NUM_POLLED)
   {
     int target = rand()%( (int)groups.size());
     polled.erase(polled.begin()+target);

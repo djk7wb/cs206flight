@@ -14,6 +14,11 @@ AddGroupDialog::AddGroupDialog(QWidget *parent) :
         }
         ui->gridLayout->addWidget(passengerName[i],i+4,2);
     }
+    this->setTabOrder(ui->smokingPreference,passengerName[0]);
+    for(int i=1; i<5; i++) {
+        this->setTabOrder(passengerName[i-1], passengerName[i]);
+    }
+    this->setTabOrder(passengerName[4],ui->buttonBox);
 }
 
 AddGroupDialog::~AddGroupDialog()
@@ -69,6 +74,7 @@ void AddGroupDialog::on_numberOfTravelers_valueChanged(int passengers)
 
     for(int i=passengers; i<5; i++) {
         passengerName[i]->setEnabled(false);
+        passengerName[i]->setText("");
     }
 }
 

@@ -90,7 +90,7 @@ void MainWindow::groupClicked()
 {
     ShowGroupDialog d;
     QPushButton *sender = (QPushButton*) this->sender();
-    d.setSender(sender->text());
+    d.setSeat(sender->text());
     d.setReservationSys(reservations);
     d.doExec();
     updateButtons();
@@ -125,10 +125,18 @@ void MainWindow::updateButtons()
 
 void MainWindow::on_action_Random_Poll_triggered()
 {
-
+    vector<Group*> groups = reservations->polledGroups();
+    ShowGroupDialog d;
+    d.setGroups(groups);
+    d.setReservationSys(reservations);
+    d.doExec();
 }
 
 void MainWindow::on_action_Overall_Satisfaction_triggered()
 {
     vector<Group*> groups = reservations->getGroups();
+    ShowGroupDialog d;
+    d.setGroups(groups);
+    d.setReservationSys(reservations);
+    d.doExec();
 }

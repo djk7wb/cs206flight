@@ -14,7 +14,8 @@ class ShowGroupDialog : public QDialog {
 public:
     ShowGroupDialog(QWidget *parent = 0);
     ~ShowGroupDialog();
-    void setSender(QString t);
+    void setSeat(QString t);
+    void setGroups(vector<Group*> g);
     void setReservationSys(ReservationSys *r);
     int doExec();
 
@@ -23,7 +24,8 @@ protected:
 
 private:
     Ui::ShowGroupDialog *ui;
-    QString sender;
+    QString seat;
+    vector<Group*> groups;
     ReservationSys *reservation;
     Group *group;
 
