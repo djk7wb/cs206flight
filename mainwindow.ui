@@ -56,6 +56,8 @@
     <property name="title">
      <string>&amp;Reports</string>
     </property>
+    <addaction name="action_Random_Poll"/>
+    <addaction name="action_Overall_Satisfaction"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menu_Reports"/>
@@ -90,6 +92,16 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="action_Random_Poll">
+   <property name="text">
+    <string>&amp;Random Poll</string>
+   </property>
+  </action>
+  <action name="action_Overall_Satisfaction">
+   <property name="text">
+    <string>&amp;Overall Satisfaction</string>
    </property>
   </action>
  </widget>

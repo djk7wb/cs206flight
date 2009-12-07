@@ -26,9 +26,11 @@ private:
     void updateButtons();
     Ui::MainWindow *ui;
     QPushButton *btnSeats[ReservationSys::ROWS][ReservationSys::COLS];
-    ReservationSys reservations;
+    ReservationSys *reservations;
 
 private slots:
+    void on_action_Overall_Satisfaction_triggered();
+    void on_action_Random_Poll_triggered();
     void on_addGroup_clicked();
     void on_action_New_Flight_triggered();
     void on_actionLoad_Flight_triggered();

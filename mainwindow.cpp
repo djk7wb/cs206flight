@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    reservations = new ReservationSys;
 
     for (int i = 0; i <= ReservationSys::ROWS; i++) {
         if(i==ReservationSys::ROWS-ReservationSys::SMOKE_ROWS) {
@@ -39,6 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    delete reservations;
     delete ui;
 }
 
@@ -71,13 +73,15 @@ void MainWindow::on_actionLoad_Flight_triggered()
 
 void MainWindow::on_action_New_Flight_triggered()
 {
-
+    delete reservations;
+    reservations = new ReservationSys();
+    updateButtons();
 }
 
 void MainWindow::on_addGroup_clicked()
 {
     AddGroupDialog d;
-    d.setReservationSys(&reservations);
+    d.setReservationSys(reservations);
     d.exec();
     updateButtons();
 }
@@ -87,7 +91,7 @@ void MainWindow::groupClicked()
     ShowGroupDialog d;
     QPushButton *sender = (QPushButton*) this->sender();
     d.setSender(sender->text());
-    d.setReservationSys(&reservations);
+    d.setReservationSys(reservations);
     d.doExec();
     updateButtons();
 }
@@ -96,7 +100,7 @@ void MainWindow::updateButtons()
 {
     for(int i=0; i<ReservationSys::ROWS; i++) {
         for(int j=0; j<ReservationSys::COLS; j++) {
-            Group *tmpGroup = reservations.getGroup(i,j);
+            Group *tmpGroup = reservations->getGroup(i,j);
             if(tmpGroup) {
                 if(tmpGroup->type == BUSINESS) {
                     btnSeats[i][j]->setStyleSheet("font-size: 8pt; background-color: #ff0000;");
@@ -117,4 +121,14 @@ void MainWindow::updateButtons()
         }
     }
     repaint();
+}
+
+void MainWindow::on_action_Random_Poll_triggered()
+{
+
+}
+
+void MainWindow::on_action_Overall_Satisfaction_triggered()
+{
+    vector<Group*> groups = reservations->getGroups();
 }
