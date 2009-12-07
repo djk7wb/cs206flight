@@ -63,12 +63,32 @@ void MainWindow::on_actionQuit_triggered()
 
 void MainWindow::on_actionSave_Flight_triggered()
 {
+    QString file = QFileDialog::getSaveFileName(this, "Save Reservations", ".reservation", tr("Flight Reservations (*.reservation);;All Files (*)"));
+    if(file == "") {
+        return;
+    }
 
+    if(!reservations->save(file.toStdString())) {
+        QMessageBox::critical(this, "Error", "Error saving this file.", QMessageBox::Ok);
+    }
 }
 
 void MainWindow::on_actionLoad_Flight_triggered()
 {
+    QString file = QFileDialog::getOpenFileName(this, "Open Reservations", "", tr("Flight Reservations (*.reservation);;All Files (*)"));
+    if(file == "") {
+        return;
+    }
 
+    delete reservations;
+    reservations = new ReservationSys();
+
+    if(!reservations->load(file.toStdString())) {
+        delete reservations;
+        reservations = new ReservationSys();
+        QMessageBox::critical(this, "Error", "Error loading this file.  The file may be corrupt.", QMessageBox::Ok);
+    }
+    updateButtons();
 }
 
 void MainWindow::on_action_New_Flight_triggered()

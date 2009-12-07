@@ -321,6 +321,16 @@ Group* ReservationSys::getGroup(int row, int col)
   return NULL;
 }
 
+Group* ReservationSys::getGroup(int groupID)
+{
+    for (int i=0; i<(int)groups.size(); i++) {
+        if (groups[i]->groupID == groupID) {
+            return groups[i];
+        }
+    }
+    return NULL;
+}
+
 ostream& operator<<(ostream& out, ReservationSys& rhs)
 {
   for (int i = 0; i < rhs.ROWS; i++)
@@ -363,4 +373,134 @@ vector<Group*> ReservationSys::polledGroups()
   return polled;
 }
 
+bool ReservationSys::save(string filename)
+{
+    ofstream out(filename.c_str());
+    if(!out.is_open()) {
+        return false;
+    }
+    for(int i=0; i < (int)groups.size(); i++) {
+        out << "G:";
+        out << groups[i]->groupID;
+        out << ":";
+        out << groups[i]->satisfaction;
+        out << ":";
+        if(groups[i]->smokingPreference) {
+            out << "S";
+        }
+        else {
+            out << "N";
+        }
+        out << ":";
+        switch(groups[i]->type) {
+        case BUSINESS:
+            out << "B";
+            break;
+        case TOURISTS:
+            out << "T";
+            break;
+        case FAMILY:
+            out << "F";
+            break;
+        }
+        out << endl;
+        vector<Person*> members = groups[i]->members;
+        for (int j=0; j<(int)members.size(); j++) {
+            out << "P:";
+            out << members[j]->row;
+            out << ":";
+            out << members[j]->col;
+            out << ":";
+            out << members[j]->groupID;
+            out << ":";
+            out << members[j]->name;
+            out << endl;
+        }
+    }
+    out.close();
+    return true;
+}
 
+bool ReservationSys::load(string filename)
+{
+    ifstream file(filename.c_str());
+    if(!file.is_open()) {
+        return false;
+    }
+    while(!file.eof()) {
+        string line;
+        getline(file, line);
+        vector<string> values;
+        string delim = ":";
+        tokenize(line, &values, delim, 4);
+        if (values.size() < 5) {
+            // skip line.
+        }
+        else if (values[0] == "G") {
+            Group *tmpGroup = new Group;
+            tmpGroup->groupID = atoi(values[1].c_str());
+            tmpGroup->satisfaction = atoi(values[2].c_str());
+            if(values[3] == "S") {
+                tmpGroup->smokingPreference = true;
+            }
+            else if(values[3] == "N"){
+                tmpGroup->smokingPreference = false;
+            }
+            else {
+                return false;
+            }
+
+            if(values[4] == "B") {
+                tmpGroup->type = BUSINESS;
+            }
+            else if(values[4] == "T") {
+                tmpGroup->type = TOURISTS;
+            }
+            else if(values[4] == "F") {
+                tmpGroup->type = FAMILY;
+            }
+            else {
+                return false;
+            }
+
+            groups.push_back(tmpGroup);
+            Group::nextID = tmpGroup->groupID+1;
+        }
+        else if (values[0] == "P") {
+            Group *tmpGroup = getGroup(atoi(values[3].c_str()));
+            if(tmpGroup) {
+                Person *tmpPerson = new Person;
+                tmpPerson->row = atoi(values[1].c_str());
+                tmpPerson->col = atoi(values[2].c_str());
+                tmpPerson->groupID = atoi(values[3].c_str());
+                tmpPerson->name = values[4];
+                tmpGroup->members.push_back(tmpPerson);
+                seats[tmpPerson->row][tmpPerson->col] = tmpPerson;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+    file.close();
+    return true;
+}
+
+void ReservationSys::tokenize(string str, vector<string> *tokens, string delimiter, int limit)
+{
+    size_t lastPos = str.find_first_not_of(delimiter, 0);
+    size_t pos = str.find_first_of(delimiter, lastPos);
+
+    while (string::npos != pos || string::npos != lastPos)
+    {
+        tokens->push_back(str.substr(lastPos, pos - lastPos));
+        lastPos = str.find_first_not_of(delimiter, pos);
+        if(limit != 0 && (int)tokens->size() == limit) {
+            tokens->push_back(str.substr(lastPos));
+            pos = string::npos;
+        }
+        else {
+            pos = str.find_first_of(delimiter, lastPos);
+        }
+    }
+}

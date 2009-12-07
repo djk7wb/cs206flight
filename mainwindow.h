@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QSpacerItem>
 #include <QMessageBox>
+#include <QFileDialog>
 #include "ReservationSys.h"
 #include "addgroupdialog.h"
 #include "showgroupdialog.h"
