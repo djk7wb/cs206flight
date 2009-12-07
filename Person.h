@@ -12,13 +12,12 @@ class Person
   public:
   void setName(string newName){name=newName;};
   string getName(){return name;};
-  Group* getGroup(){return p_group;};
+  //Group* getGroup(){return p_group;};
   int getRow(){return row;};
   int getCol(){return col;};
   int getGroupID(){return groupID;};
 
   private:
-  Group* p_group;
   string name;
   int row;
   int col;

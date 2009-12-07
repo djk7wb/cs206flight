@@ -19,16 +19,10 @@ ReservationSys::ReservationSys()
 
 ReservationSys::~ReservationSys()
 {
-  //People will fall out of scope with their group.
-  /*
-  for (int i = 0; i < ROWS; i++)
+  for(int i=0; i<(int)groups.size(); i++)
   {
-    for (int j = 0; j < COLS; j++)
-    {
-      delete seats[i][j];
-    }
+    delete groups[i];
   }
-*/
   for (int i = 0; i < ROWS; i++)
   {
     delete [] *(seats+i);
@@ -113,12 +107,22 @@ bool ReservationSys::addGroup(Group newGroup)
   if (bestValue != INVALID)
   {
     newGroup.satisfaction = bestValue;
-    groups.push_back(newGroup);
+    Group *tmpGroup = new Group;
+    tmpGroup->groupID = newGroup.groupID;
+    for (int i = 0; i < (int)newGroup.members.size(); i++)
+    {
+      tmpGroup->addPerson(*(newGroup.members[i]));
+    }
+    tmpGroup->type = newGroup.type;
+    tmpGroup->smokingPreference = newGroup.smokingPreference;
+    tmpGroup->satisfaction = newGroup.satisfaction;
+    groups.push_back(tmpGroup);
 
     for (int i = 0; i < int(bestSeats.size()); i++)
     {
       int seatNum = bestSeats[i];
-      seats[seatNum/COLS][seatNum%COLS] = &groups.back().members[i];
+      Group *tmpGroup = groups.back();
+      seats[seatNum/COLS][seatNum%COLS] = tmpGroup->members[i];
       seats[seatNum/COLS][seatNum%COLS]->row = seatNum/COLS;
       seats[seatNum/COLS][seatNum%COLS]->col = seatNum%COLS;
     }
@@ -277,7 +281,7 @@ bool ReservationSys::removeGroup(Group *oldGroup)
   int targetIndex = -1;
   for (int i = 0; i < int(groups.size()); i++)
   {
-    if (groups[i].groupID == oldGroup->groupID)
+    if (groups[i]->groupID == oldGroup->groupID)
     {
       targetIndex = i;
     }
@@ -289,7 +293,7 @@ bool ReservationSys::removeGroup(Group *oldGroup)
     {
       for (int j = 0; j < COLS; j++)
       {
-        if (seats[i][j] && seats[i][j]->p_group == oldGroup)
+        if (seats[i][j] && seats[i][j]->groupID == oldGroup->groupID)
         {
           seats[i][j] = NULL;
         }
@@ -305,10 +309,11 @@ Group* ReservationSys::getGroup(int row, int col)
 {
   int myGroupID = -1;
   if (seats[row][col] != NULL) {
-    myGroupID = seats[row][col]->groupID;
+    Person *tmpPerson = seats[row][col];
+    myGroupID = tmpPerson->groupID;
     for (int i=0; i<(int)groups.size(); i++) {
-      if (groups[i].groupID == myGroupID) {
-        return &groups[i];
+      if (groups[i]->groupID == myGroupID) {
+        return groups[i];
       }
     }
   }

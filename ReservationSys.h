@@ -16,7 +16,7 @@ class ReservationSys
   static const int COL_VALUE = 5;
   static const int ADJACENT_VALUE = 10;
   Person*** seats;
-  vector<Group> groups;
+  vector<Group*> groups;
 
   bool validSeating(vector<int> chosenSeatNums);
   int seatingValue(Group g, vector<int> chosenSeatNums);
@@ -36,7 +36,7 @@ class ReservationSys
   void ticketGenerator(Group);
   void satisfactionReport();
   Person* getSeat(int row, int col){return seats[row][col];};
-  vector<Group> getGroups(){return groups;};
+  vector<Group*> getGroups(){return groups;};
   Group* getGroup(int row, int col);
 
   friend ostream& operator<<(ostream& out, ReservationSys& rhs);

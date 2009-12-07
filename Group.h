@@ -19,6 +19,7 @@ class Group
   public:
   Group();
   Group(const Group& original);
+  ~Group();
   bool addPerson(Person);
   GroupType type;
   bool smokingPreference;
@@ -26,10 +27,10 @@ class Group
   int groupID;
   static int nextID;
   bool toTicket();
-  vector<Person> getMembers(){return members;};
+  vector<Person*> getMembers(){return members;};
 
   private:
-  vector<Person> members;
+  vector<Person*> members;
 
   friend class ReservationSys;
 };

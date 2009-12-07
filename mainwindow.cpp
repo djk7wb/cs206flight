@@ -107,6 +107,9 @@ void MainWindow::updateButtons()
                 else if(tmpGroup->type == FAMILY) {
                     btnSeats[i][j]->setStyleSheet("font-size: 8pt; background-color: #0000ff;");
                 }
+                else {
+                    btnSeats[i][j]->setStyleSheet("font-size: 8pt; background-color: #999999;");
+                }
             }
             else {
                 btnSeats[i][j]->setStyleSheet("font-size: 8pt;");

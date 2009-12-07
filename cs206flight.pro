@@ -9,18 +9,13 @@ SOURCES += main.cpp \
     Person.cpp \
     Group.cpp \
     addgroupdialog.cpp \
-    showgroupdialog.cpp \
-    exception.cpp
+    showgroupdialog.cpp
 HEADERS += mainwindow.h \
     ReservationSys.h \
     Person.h \
     Group.h \
     addgroupdialog.h \
-    showgroupdialog.h \
-    node.h \
-    list.hpp \
-    list.h \
-    exception.h
+    showgroupdialog.h
 FORMS += mainwindow.ui \
     addgroupdialog.ui \
     showgroupdialog.ui
