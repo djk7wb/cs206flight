@@ -430,7 +430,7 @@ bool ReservationSys::load(string filename)
     while(!file.eof()) {
         string line;
         getline(file, line);
-        if(line[line.size()-1] == '\r') {
+        if((int)line.size() > 0 && line.at(line.size()-1) == '\r') {
             // strip windows newlines, if exist.
             line = line.substr(0, line.size()-1);
         }
