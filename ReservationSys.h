@@ -38,6 +38,7 @@ class ReservationSys
   Person* getSeat(int row, int col){return seats[row][col];};
   vector<Group*> getGroups(){return groups;};
   Group* getGroup(int row, int col);
+  vector<Group*> polledGroups();
 
   friend ostream& operator<<(ostream& out, ReservationSys& rhs);
 };
