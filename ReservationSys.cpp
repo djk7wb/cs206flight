@@ -357,7 +357,7 @@ vector<Group*> ReservationSys::polledGroups()
   srand((unsigned int)time(NULL));
   while ((int)polled.size() > NUM_POLLED)
   {
-    int target = rand()%( (int)groups.size());
+    int target = rand()%( (int)polled.size());
     polled.erase(polled.begin()+target);
   }
   return polled;
