@@ -22,6 +22,7 @@ class ReservationSys
   void tokenize(string str, vector<string> *tokens, string delimiter, int limit);
   Person*** seats;
   vector<Group*> groups;
+  unsigned int *seedp;
 
   bool validSeating(vector<int> chosenSeatNums);
   int seatingValue(Group g, vector<int> chosenSeatNums);

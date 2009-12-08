@@ -15,6 +15,8 @@ ReservationSys::ReservationSys()
       seats[i][j] = NULL;
     }
   }
+  srand((unsigned int)time(NULL));
+  seedp = new unsigned int;
 }
 
 ReservationSys::~ReservationSys()
@@ -373,10 +375,9 @@ vector<Group*> ReservationSys::polledGroups()
 {
   const int NUM_POLLED = 10;
   vector<Group*> polled = groups;
-  srand((unsigned int)time(NULL));
   while ((int)polled.size() > NUM_POLLED)
   {
-    int target = rand()%( (int)polled.size());
+    int target = rand_r(seedp)%( (int)polled.size());
     polled.erase(polled.begin()+target);
   }
   return polled;
