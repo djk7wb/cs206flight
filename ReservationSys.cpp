@@ -1,4 +1,3 @@
-
 #include "ReservationSys.h"
 
 ReservationSys::ReservationSys()
@@ -256,15 +255,7 @@ int ReservationSys::seatingValue(Group g, vector<int> chosenSeatNums)
         value -= SMOKE_VALUE;
       }
     }
-    else
-    {
-      if(row >= ROWS-SMOKE_ROWS) {
-        value -= SMOKE_VALUE;
-      }
-      else {
-        value += SMOKE_VALUE;
-      }
-    }
+
     if (g.type==FAMILY && aisle)
     {
       value += COL_VALUE;
